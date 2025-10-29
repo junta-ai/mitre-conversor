@@ -1,0 +1,3 @@
+Durante o acesso a uma máquina Windows com privilégios de usuário padrão, o atacante detectou a presença de um software de inventário local com serviço em execução como SYSTEM. A ferramenta possuía uma função de atualização executável por qualquer usuário.
+
+Aproveitando a falha de permissões, o atacante substituiu o executável de atualização por um shell reverso update_payload.exe. Ao ser executado automaticamente pelo serviço, o payload foi iniciado com privilégios SYSTEM, permitindo a escalada de privilégios completa na máquina.

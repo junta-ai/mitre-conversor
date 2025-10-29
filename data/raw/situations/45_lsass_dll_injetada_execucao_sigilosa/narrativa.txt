@@ -1,0 +1,11 @@
+Após o comprometimento de uma máquina Windows com privilégios elevados, o atacante buscou explorar o processo LSASS (Local Security Authority Subsystem Service) para realizar a execução furtiva de código.
+
+O atacante utilizou uma técnica de injeção de DLL diretamente no processo lsass.exe, utilizando uma DLL especialmente construída para capturar senhas em tempo real e manter um canal de comunicação sigiloso com o atacante.
+
+A DLL foi carregada com o comando:
+
+rundll32.exe lsass_capture.dll,EntryPoint
+
+Para evitar alertas do antivírus, a DLL foi assinada com um certificado roubado, o que permitiu execução silenciosa. O payload injetado executava rotinas de espionagem e exfiltração periódica de dados de autenticação em memória, sem criar arquivos no disco.
+
+Com o monitoramento passivo da memória, o atacante conseguiu coletar hashes de autenticação, tokens e senhas armazenadas temporariamente no sistema.

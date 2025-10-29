@@ -1,0 +1,5 @@
+| ID    | Nome                       | Descrição                                                                                     | Correção                                                                                |
+| ----- | -------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| T1573 | Encrypted Channel          | O túnel foi encapsulado sobre SMTP com criptografia TLS para ocultar comandos e exfiltração.  | Implementar inspeção profunda de pacotes e regras específicas para SMTP saindo da rede. |
+| T1071 | Application Layer Protocol | O canal de comunicação abusava protocolo de e-mail para enviar comandos.                      | Separar redes administrativas e aplicar proxy para tráfego SMTP.                        |
+| T1090 | Proxy                      | O atacante redirecionou tráfego interno para fora via stunnel e serviços de proxy maliciosos. | Detectar e bloquear proxies não autorizados, inspecionar destino das conexões.          |

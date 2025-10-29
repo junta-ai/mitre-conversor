@@ -1,0 +1,7 @@
+| ID    | Nome                              | Descrição                                                                       | Correção                                                                                    |
+| ----- | --------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| T1218 | Signed Binary Proxy Execution     | Utilização do binário cmstp.exe para execução de payload malicioso.             | Bloquear uso não autorizado de cmstp.exe e monitorar chamadas com arquivos `.inf`.          |
+| T1059 | Command and Scripting Interpreter | Payloads PowerShell foram executados após o acionamento do perfil malicioso.    | Aplicar restrições de execução para PowerShell e logs reforçados com AMSI.                  |
+| T1053 | Scheduled Task/Job                | Foi agendada uma tarefa para garantir persistência diária do acesso.            | Monitorar e bloquear criação de tarefas por usuários sem privilégios administrativos.       |
+| T1562 | Impair Defenses                   | A execução ocorreu com binário assinado e flag silencioso para evitar detecção. | Restringir execução de binários proxy e aplicar política de aplicação restrita (AppLocker). |
+| T1105 | Ingress Tool Transfer             | Script remoto foi baixado via PowerShell em tempo de execução.                  | Inspecionar chamadas HTTP e bloquear resoluções para domínios maliciosos.                   |

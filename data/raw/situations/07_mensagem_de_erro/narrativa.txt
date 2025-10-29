@@ -1,0 +1,9 @@
+Durante a fase inicial de coleta de informações na aplicação https://intranet.empresa.com, foi observado que o sistema não realiza o tratamento adequado de exceções. Ao enviar parâmetros malformados via requisições HTTP, a aplicação retornou mensagens de erro extremamente detalhadas, revelando informações internas do ambiente de backend.
+
+Ao acessar diretamente o endpoint https://intranet.empresa.com/api/v1/usuarios?id=', a resposta do servidor continha a seguinte mensagem:
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '''' at line 1
+
+Esse erro revelou que a aplicação utiliza MySQL e possui falhas no tratamento de entradas do usuário. Além disso, outras páginas acessadas, como https://intranet.empresa.com/debug/info, exibiram dados sensíveis como caminho de arquivos (/var/www/html/api/usuarios.php), nome do banco de dados (db_intranet) e versão da linguagem (PHP 7.4).
+
+Essas informações, embora não explorem diretamente uma vulnerabilidade de execução, são altamente valiosas em estágios iniciais de reconhecimento e podem auxiliar atacantes em ataques mais direcionados, como SQL Injection, Remote File Inclusion ou exploração de falhas específicas da versão exposta.

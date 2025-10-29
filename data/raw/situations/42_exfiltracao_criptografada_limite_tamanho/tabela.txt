@@ -1,0 +1,7 @@
+| ID    | Nome                                   | Descrição                                                                        | Correção                                                                         |
+| ----- | -------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| T1560 | Archive Collected Data                 | Os arquivos foram comprimidos em um único pacote para facilitar a transferência. | Monitorar criação de arquivos ZIP em diretórios de usuários sensíveis.           |
+| T1022 | Data Encrypted                         | A compressão foi seguida de criptografia AES antes da exfiltração.               | Inspecionar conteúdo criptografado com base em padrão de acesso e origem.        |
+| T1030 | Data Transfer Size Limits              | O atacante dividiu os arquivos para burlar limiares de detecção por tamanho.     | Detectar padrões de múltiplas transferências pequenas em intervalos irregulares. |
+| T1048 | Exfiltration Over Alternative Protocol | Os dados foram enviados usando POST HTTPS com headers falsificados.              | Bloquear transferências incomuns por HTTPS e validar payloads fora do esperado.  |
+| T1071 | Application Layer Protocol             | A exfiltração usou tráfego sobre HTTP disfarçado como uso legítimo de APIs.      | Monitorar anomalias de uso de protocolos de aplicação em endpoints padrão.       |

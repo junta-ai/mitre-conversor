@@ -1,0 +1,7 @@
+| ID    | Nome                              | Descrição                                                                           | Correção                                                                             |
+| ----- | --------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| T1218 | Signed Binary Proxy Execution     | O atacante utilizou mshta.exe para executar código malicioso hospedado remotamente. | Restringir execução de mshta.exe e monitorar chamadas suspeitas.                     |
+| T1059 | Command and Scripting Interpreter | O payload executou scripts PowerShell para controle remoto.                         | Monitorar execução de PowerShell com parâmetros ocultos.                             |
+| T1105 | Ingress Tool Transfer             | Payloads adicionais foram baixados dinamicamente durante a execução do HTA.         | Bloquear execução de scripts HTA e downloads não assinados.                          |
+| T1547 | Boot or Logon Autostart Execution | O atacante criou chave de registro para garantir persistência após login.           | Auditar alterações no registro e bloquear inicialização automática suspeita.         |
+| T1562 | Impair Defenses                   | O uso de código ofuscado e execução sem escrita em disco dificultou a detecção.     | Ativar proteção de script e EDR comportamental para identificar execuções in-memory. |

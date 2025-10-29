@@ -1,0 +1,14 @@
+Durante a fase de coleta de informações externas, o atacante realizou buscas por vazamentos relacionados à organização em repositórios públicos e bancos de dados comprometidos. Utilizando ferramentas como dehashed, HaveIBeenPwned e LeakLooker, o invasor identificou um conjunto de credenciais corporativas reutilizadas contendo o email corporativo paulo.santos@empresa.com.br e uma senha simples previamente exposta: Empresa@123.
+
+Testes automatizados com o utilitário hydra contra serviços externos revelaram que o mesmo conjunto de credenciais permitia autenticação bem-sucedida em um painel de e-mails via Outlook Web Access (OWA). O comando utilizado foi:
+
+hydra -l paulo.santos@empresa.com.br
+ -p Empresa@123 owa.empresa.com https-post-form "/owa/auth.owa:username=^USER^&password=^PASS^:F=reason="
+
+O acesso permitiu a leitura de e-mails sensíveis, além do download de anexos com documentos internos, scripts e credenciais adicionais. O atacante configurou uma regra de encaminhamento de e-mail para um endereço externo, garantindo persistência e vigilância passiva sobre comunicações internas.
+
+Para movimentação lateral, o atacante usou as credenciais capturadas para acessar um compartilhamento de rede autenticado com:
+
+net use \arquivos.empresa.com.br\projetos /user:paulo.santos Empresa@123
+
+Esse compartilhamento continha documentos administrativos e scripts com senhas salvas em texto claro. A exploração foi escalonada com posterior coleta de outras credenciais internas e tokens de acesso em arquivos de configuração.

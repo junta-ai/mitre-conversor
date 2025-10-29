@@ -1,0 +1,13 @@
+Durante a fase de exploração, o atacante visou o uso do utilitário legítimo regsvcs.exe, presente no .NET Framework do Windows, que permite o registro de assemblies .NET e pode ser abusado para executar DLLs maliciosas. Aproveitando esse comportamento, foi criada uma DLL customizada com lógica maliciosa incorporada, utilizando C# e o método público de instalação requerido pela ferramenta.
+
+Após a compilação do código, a DLL foi nomeada como BackdoorInstall.dll e copiada para um diretório temporário acessível, como C:\Temp. A execução foi então realizada com o comando:
+
+regsvcs.exe C:\Temp\BackdoorInstall.dll
+
+Essa execução ocorreu sem alertas de segurança, uma vez que regsvcs.exe é assinado pela Microsoft e frequentemente ignorado por soluções de antivírus padrão. A DLL estabelecia uma conexão reversa utilizando um cliente TCP embutido, abrindo um canal de comunicação direta com o servidor de comando e controle (C2) do atacante.
+
+Após o acesso inicial, o atacante realizou reconhecimento interno com comandos como net user, query user e tasklist, e iniciou o processo de persistência alterando o comportamento de um serviço existente para carregar a DLL maliciosa em reinicializações subsequentes. Para isso, utilizou:
+
+sc config WinDefend binPath= "regsvcs.exe C:\Temp\BackdoorInstall.dll"
+
+A modificação permitia que, mesmo após reinicializações, o código fosse executado automaticamente sempre que o serviço fosse chamado.

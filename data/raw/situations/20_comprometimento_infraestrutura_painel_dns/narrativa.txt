@@ -1,0 +1,5 @@
+Durante a fase de reconhecimento externo, o atacante identificou um painel de gerenciamento DNS hospedado pela empresa em um subdomínio administrativo acessível publicamente. Utilizando whatweb e nmap -sV -p 443 dns-admin.empresa.com, descobriu-se que o painel utilizava uma versão desatualizada do software PowerDNS com falhas conhecidas de autenticação.
+
+Explorando a falha, o atacante acessou a interface de gerenciamento e alterou os registros DNS do domínio principal, redirecionando login.empresa.com para um servidor controlado externamente. Foi configurado um servidor web com uma página falsa replicando o portal de autenticação legítimo da empresa, capturando assim credenciais de diversos usuários.
+
+O ataque passou despercebido durante algumas horas, tempo suficiente para que acessos internos fossem feitos utilizando as credenciais interceptadas. A URL de redirecionamento foi oculta via Cloudflare, dificultando a detecção por mecanismos automáticos de segurança.

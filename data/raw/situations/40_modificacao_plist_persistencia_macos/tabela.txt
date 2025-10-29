@@ -1,0 +1,7 @@
+| ID    | Nome                                 | Descrição                                                                         | Correção                                                                              |
+| ----- | ------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| T1547 | Boot or Logon Autostart Execution    | O atacante criou um LaunchAgent para execução automática no login.                | Monitorar alterações em LaunchAgents e LaunchDaemons.                                 |
+| T1037 | Boot or Logon Initialization Scripts | O script malicioso foi injetado na sequência de inicialização via PLIST.          | Proteger diretórios do usuário e aplicar monitoramento contínuo de arquivos plist.    |
+| T1059 | Command and Scripting Interpreter    | Um script Bash remoto foi executado com comandos para exfiltração e persistência. | Restringir uso de shells remotos e monitorar atividade em bash.                       |
+| T1105 | Ingress Tool Transfer                | O payload foi transferido via cURL diretamente de um servidor remoto.             | Bloquear conexões suspeitas e uso de cURL sem verificação SSL.                        |
+| T1562 | Impair Defenses                      | O atacante desabilitou verificações automáticas do sistema para manter acesso.    | Auditar alterações nas configurações do sistema e proteger parâmetros de atualização. |

@@ -1,0 +1,3 @@
+O atacante comprometeu o pipeline de atualização de uma aplicação de terceiros instalada na infraestrutura da empresa. Durante a fase de atualização automática, um binário modificado foi distribuído por meio do servidor legítimo, substituindo a versão oficial do software por uma que continha código malicioso embutido.
+
+Esse código, ao ser executado no contexto do serviço, iniciou conexão com um servidor de comando e controle e implantou um backdoor para movimentação lateral. A falha foi possível pela ausência de validação de integridade no processo de atualização.

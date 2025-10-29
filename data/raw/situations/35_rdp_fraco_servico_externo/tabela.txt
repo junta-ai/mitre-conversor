@@ -1,0 +1,7 @@
+| ID    | Nome                              | Descrição                                                                       | Correção                                                                     |
+| ----- | --------------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| T1133 | External Remote Services          | O atacante obteve acesso inicial através de um serviço RDP exposto na internet. | Restringir acesso remoto a redes privadas e aplicar autenticação multifator. |
+| T1110 | Brute Force                       | Credenciais fracas foram exploradas via ataque de força bruta automatizado.     | Implementar bloqueio por tentativas falhas e políticas de senha forte.       |
+| T1059 | Command and Scripting Interpreter | Comandos locais e PowerShell foram utilizados para manutenção e reconhecimento. | Monitorar execução de scripts PowerShell e aplicar restrições de uso.        |
+| T1053 | Scheduled Task/Job                | Foi criada uma tarefa agendada para manter persistência e reconexão ao C2.      | Auditar tarefas agendadas e impedir criação por contas não administrativas.  |
+| T1562 | Impair Defenses                   | Falhas na auditoria e monitoramento facilitaram a evasão de detecção.           | Ativar logging avançado e monitorar sessões RDP suspeitas.                   |

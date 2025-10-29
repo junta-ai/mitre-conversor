@@ -1,0 +1,3 @@
+Em um ambiente onde ferramentas de monitoramento e keyloggers estavam ativos, o atacante utilizou um script de movimentação automática de mouse com comandos via AutoHotKey. O script simulava cliques manuais e movimentação em interfaces gráficas de forma precisa, realizando alterações em configurações do sistema sem gerar eventos de teclado ou comandos rastreáveis.
+
+Com isso, foi possível desabilitar proteções e configurar persistência local sem ativar alertas nos sistemas de detecção comportamental.

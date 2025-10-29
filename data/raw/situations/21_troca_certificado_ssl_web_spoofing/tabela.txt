@@ -1,0 +1,7 @@
+| ID    | Nome                          | Descrição                                                                          | Correção                                                                       |
+| ----- | ----------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| T1583 | Establish Accounts            | O atacante registrou e configurou um domínio semelhante ao legítimo.               | Registrar variantes de domínio e configurar alertas para typosquatting.        |
+| T1556 | Modify Authentication Process | Um site falso com SSL válido foi usado para capturar credenciais.                  | Aplicar HSTS, utilizar autenticação forte e revisar cadeias de certificados.   |
+| T1562 | Impair Defenses               | A ausência de HSTS permitiu conexão a um site falso com certificado válido.        | Implementar cabeçalhos de segurança HTTP e verificar validade de certificados. |
+| T1557 | Adversary-in-the-Middle       | O tráfego foi interceptado entre o usuário e o servidor verdadeiro após a coleta.  | Utilizar tokens de sessão únicos e verificar integridade das conexões.         |
+| T1078 | Valid Accounts                | As credenciais obtidas foram utilizadas para acesso legítimo em sistemas internos. | Habilitar MFA em todos os acessos remotos e internos críticos.                 |

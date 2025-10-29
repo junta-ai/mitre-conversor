@@ -1,0 +1,3 @@
+| ID        | Nome                           | Descrição                                                                                        | Correção                                                                                                  |
+| --------- | ------------------------------ | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| T1592.001 | Gather Victim Host Information | A ausência de cabeçalhos permitiu a coleta de informações sobre a configuração da aplicação web. | Implementar os principais cabeçalhos de segurança HTTP conforme as boas práticas recomendadas pelo OWASP. |

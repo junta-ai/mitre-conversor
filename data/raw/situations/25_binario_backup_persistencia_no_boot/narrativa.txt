@@ -1,0 +1,3 @@
+Após comprometer uma máquina com privilégios administrativos, o atacante identificou um script de backup personalizado sendo executado no boot por um serviço local. Esse script utilizava o binário cp.exe para mover arquivos críticos para um diretório de backup.
+
+O atacante criou uma versão modificada do cp.exe, embutindo um shell reverso com código PowerShell, e substituiu o binário original no caminho utilizado pelo script. Na próxima reinicialização, o serviço de backup executou o binário adulterado, abrindo uma conexão remota com o atacante sem levantar suspeitas.

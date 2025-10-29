@@ -1,0 +1,7 @@
+O atacante obteve acesso inicial a um host Windows e transferiu um arquivo DLL malicioso chamado auditpolicy.dll. Em vez de executá-lo diretamente, ele utilizou o binário assinado do Windows regsvr32.exe para registrar a DLL de forma remota e silenciosa, evitando detecção por ferramentas antivírus.
+
+O comando utilizado foi:
+
+regsvr32.exe /s auditpolicy.dll
+
+Ao ser registrado, o código malicioso embutido na DLL foi executado com privilégios do usuário atual, estabelecendo uma conexão reversa com o servidor de comando e controle. Esse método permitiu evasão de mecanismos de segurança tradicionais e execução remota sem escrita explícita em disco de executáveis.
