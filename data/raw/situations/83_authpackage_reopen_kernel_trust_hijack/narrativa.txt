@@ -1,0 +1,9 @@
+Durante o teste, foram localizados artefatos que indicavam manipulação avançada no processo de autenticação e em componentes de confiança do sistema operacional. O ambiente afetado incluía servidores com serviços de comunicação de voz e multimídia, bem como endpoints que faziam autenticação integrada por componentes nativos.
+
+A presença dos artefatos passou a ser notada principalmente quando sessões administrativas relataram falhas intermitentes de autenticação; ao aprofundar, constatou-se que regras e provedores de confiança tinham sido redirecionados para componentes alterados. Esses componentes disfarçavam a natureza maliciosa, apresentando-se como módulos de sistema legítimos.
+
+Além disso, drivers e extensões do kernel foram submetidos a pequenas alterações que permitiam reabrir aplicações críticas com parâmetros modificados, injetando lógicas adicionais de controle. Esse tipo de modificação em nível de kernel aumentou drasticamente a dificuldade de detecção por ferramentas convencionais e exigiu análise em modo kernel/forense.
+
+Para camuflar as ações, o invasor também aplicou técnicas para forçar a evasão de depuração em ferramentas de análise, bloqueando ou alterando respostas para debuggers comuns e dificultando a engenharia reversa dos módulos comprometidos. Isso retardou a compreensão completa do escopo até que mais dados fossem coletados.
+
+A remediação envolveu isolar e reprovisionar hosts afetados, reinstalar kernels a partir de fontes confiáveis e revogar quaisquer provedores de confiança alterados. Recomenda-se aumentar a observabilidade em níveis profundos do sistema e controles de assinatura para drivers e módulos.

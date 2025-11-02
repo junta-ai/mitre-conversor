@@ -1,0 +1,3 @@
+Durante o teste, o adversário identificou um repositório web compartilhado utilizado por múltiplos serviços e usou o canal de deployment para plantar arquivos que serviam como estagiários para exfiltração. A facilidade de escrita no espaço compartilhado permitiu subir artefatos que eram posteriormente acessados por processos locais.
+
+Posteriormente, o atacante explorou mecanismos de transferência já existentes na infraestrutura para mover dados agregados para um endpoint controlado externamente, evitando uso de protocolos incomuns e reduzindo a chance de bloqueio por regras de proxy. A análise dos logs de proxy e do servidor web consolidou a trilha de exfiltração.

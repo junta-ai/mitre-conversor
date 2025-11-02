@@ -1,0 +1,5 @@
+|    ID | Nome (técnica)            | Descrição (aplicada ao caso)                                                            | Correção Recomendada                                                                        |
+| ----: | ------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| T1491 | Defacement                | Conteúdo público foi alterado para exibir mensagens/informações do atacante.            | Proteger processos de deploy, exigir assinaturas e revisão de conteúdo antes de publicação. |
+| T1051 | Shared Webroot            | O atacante usou áreas compartilhadas para inserir conteúdo que serviu páginas públicas. | Separar webroots, restringir permissões de escrita e validar conteúdo no deploy.            |
+| T1505 | Server Software Component | Componentes do servidor de publicação foram manipulados para permitir a alteração.      | Harden servidor de publicação e monitorar alterações em componentes.                        |

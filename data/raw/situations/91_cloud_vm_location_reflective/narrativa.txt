@@ -1,0 +1,3 @@
+Durante o teste, o atacante mapeou serviços cloud e inventários de máquinas virtuais para localizar imagens e endpoints que pudessem ser manipulados. Consultas automatizadas à API de gerenciamento cloud expuseram metadados e localizações de instâncias, que foram usadas para selecionar alvos de maior privilégio.
+
+Com acesso a uma instância selecionada, o operador utilizou um carregamento de código em memória para executar payloads sem deixar artefatos persistentes em disco, complicando a detecção por scanners baseados em arquivos. A correlação entre logs cloud e telemetria do host permitiu finalmente identificar o perfil temporal do ataque.

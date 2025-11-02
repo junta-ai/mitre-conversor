@@ -1,0 +1,3 @@
+Durante o teste, detectamos atividades que visaram reduzir a visibilidade das ações do invasor em ambientes cloud e endpoints gerenciados. O adversário preparou artefatos ofuscados e aproveitou regiões de nuvem pouco utilizadas para hospedar infraestrutura de apoio, o que dificultou a correlação por ferramentas padrão.
+
+Em endpoints macOS, foram observadas alterações em arquivos de configuração que controlam o comportamento de inicialização de serviços — alterações essas que passaram despercebidas por verificações superficiais. A equipe usou ferramentas forenses (Volatility) e logs centralizados para identificar a cadeia de alterações e mapear a origem dos artefatos hospedados em regiões não monitoradas.

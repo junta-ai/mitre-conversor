@@ -1,0 +1,12 @@
+| ID    | Nome                                     | Descrição                                                    | Correção                                                 |
+| ----- | ---------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
+| T1092 | Communication Through Removable Media    | Uso de USB para iniciar infecção                             | Bloquear autorun e monitorar inserção de dispositivos    |
+| T1204 | User Execution                           | Execução involuntária via click ou autoexec                  | Restringir execução automática em mídias externas        |
+| T1081 | Credentials in Files                     | Coleta de senhas em arquivos e navegadores                   | Forçar uso de gerenciadores de senha criptografados      |
+| T1077 | Windows Admin Shares                     | Movimentação lateral via C$                                  | Restringir Admin Shares e uso de contas privilegiadas    |
+| T1047 | Windows Management Instrumentation (WMI) | Execução remota via WMI ou PsExec                            | Monitoramento de ferramentas administrativas             |
+| T1137 | Office Application Startup               | Persistência com macro adicionada a modelo DOTM              | Restringir carregamento de macros automáticas            |
+| T1056 | Input Capture                            | Coleta de dados de entrada do usuário (keystrokes ou senhas) | Monitorar alterações em registradores de teclado e input |
+| T1059 | Command and Scripting Interpreter        | Execução de payload via PowerShell                           | Monitoramento de comandos baseados em rede               |
+| T1105 | Ingress Tool Transfer                    | Transferência de ferramentas via pastas compartilhadas       | Monitorar uso de ferramentas conhecidas como PsExec      |
+| T1025 | Data from Removable Media                | Leitura e execução de scripts em dispositivo USB             | Implementar políticas de DLP (Data Loss Prevention)      |

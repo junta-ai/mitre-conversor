@@ -1,0 +1,3 @@
+Durante o teste, o adversário explorou mecanismos de delegação e atributos históricos de contas para migrar privilégios entre domínios, permitindo interação com recursos que normalmente estariam protegidos. A progressão utilizou uma combinação de credenciais obtidas e modificações de atributos de conta para expandir o escopo de controle.
+
+As evidências foram reconstruídas por meio de logs do Active Directory e coleta com BloodHound; a manipulação histórica de SID tornou possível que o atacante delegasse acessos sem criar contas óbvias, retardando a detecção. A resposta demandou revisão de históricos de SID e correção de relações de confiança entre domínios.

@@ -1,0 +1,9 @@
+Durante o teste, uma aplicação cliente instalada em estações administrativas começou a executar componentes inesperados após atualizações noturnas. O ambiente era heterogêneo, com estações macOS e servidores Windows co-gerenciados; o atacante explorou diferenças de configuração para garantir persistência em ambos os mundos.
+
+Primeiro, um componente malicioso foi colocado em locais de busca prioritários de bibliotecas, de modo que o executável legítimo passou a carregar código adverso sem alteração do binário principal. Em máquinas macOS, entradas de inicialização do usuário foram criadas para relançar o agente sempre que o usuário fazia login, e em Windows rotinas de execução automática foram ajustadas para reiniciar o módulo quando detectado ausente.
+
+Com o controle estabelecido, o operador implantou um serviço emulada de diretório que oferecia interfaces administrativas falsas, o que facilitou a captura de credenciais e escalonamento. Houve também implantação temporária de um controlador de domínio forjado em um segmento de teste da rede, com o objetivo de enganar autenticações locais e interceptar fluxos de autenticação legítimos.
+
+A persistência foi ainda respaldada por mecanismos que decodificavam e limpavam artefatos de disco após cada execução, reduzindo a pegada forensic e atrasando a resposta. Quando foram executadas ações de resposta, os artefatos residuais eram escassos, exigindo análise de memória e logs correlacionados para reconstruir a cadeia de eventos.
+
+Como mitigação imediata foram removidos os módulos falsos, restauradas as rotinas de inicialização legítimas e isoladas as máquinas com sinais de comprometimento. A lição principal foi a necessidade de políticas que impeçam carregamento de bibliotecas de diretórios não confiáveis e controles reforçados sobre itens de início de sessão em estações de trabalho.

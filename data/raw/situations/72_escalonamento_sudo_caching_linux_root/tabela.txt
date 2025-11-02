@@ -1,0 +1,12 @@
+| ID    | Nome                         | Descrição                                                       | Correção                                        |
+| ----- | ---------------------------- | --------------------------------------------------------------- | ----------------------------------------------- |
+| T1206 | Sudo Caching                 | Uso indevido do cache de sudo para escalar privilégios.         | Desativar cache ou aplicar timeout curto.       |
+| T1501 | Systemd Service              | Criação de serviço persistente para reinicialização automática. | Auditar novos serviços e aplicar whitelisting.  |
+| T1148 | HISTCONTROL                  | Manipulação de histórico de comandos.                           | Forçar registro centralizado de comandos root.  |
+| T1161 | LC_LOAD_DYLIB Addition       | Injeção de bibliotecas em processos de sistema.                 | Monitorar carregamento de bibliotecas incomuns. |
+| T1179 | Hooking                      | Alteração de chamadas do sistema para mascarar processos.       | Ativar SELinux e validação de integridade.      |
+| T1066 | Indicator Removal from Tools | Remoção de artefatos de logs e auditorias.                      | Habilitar monitoramento imutável de logs.       |
+| T1033 | System Owner/User Discovery  | Enumeração de usuários com privilégios sudo.                    | Restringir sudoers e revisar permissões locais. |
+| T1050 | New Service                  | Serviço adicional criado para manter acesso.                    | Detectar criação de novos serviços.             |
+| T1054 | Indicator Blocking           | Desativação de auditoria temporária.                            | Reforçar integridade dos processos de log.      |
+| T1553 | Subvert Trust Controls       | Alteração de permissões e binários legítimos.                   | Validar binários críticos periodicamente.       |

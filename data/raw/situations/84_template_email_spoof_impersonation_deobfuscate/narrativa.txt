@@ -1,0 +1,9 @@
+Durante o teste, a equipa de avaliação observou uma campanha que misturava engenharia social interna com manipulação de templates e mensagens automatizadas. O adversário preparou comunicações que imitavam formulários e notificações internas, induzindo usuários a executar ações ou a fornecer informações sensíveis.
+
+Parte do sucesso se deu por meio da utilização de templates e conteúdos dinâmicos que eram renderizados sem validação adequada, permitindo que fragmentos controlados pelo atacante fossem inseridos e exibidos como parte de mensagens legítimas. Isso elevou a taxa de cliques e a eficácia das mensagens de spearphishing interno.
+
+Além disso, o atacante falsificou remetentes para parecerem originários de serviços confiáveis da organização, o que aumentou a confiança dos destinatários. Em paralelo, arquivos e payloads foram ofuscados para evitar detecção automática, e processos de deobfuscação eram executados somente após condições específicas de reconciliação de ambiente terem sido satisfeitas.
+
+A combinação de falsificação de remetente, templates manipuláveis e técnica de ofuscação condicionada permitiu que o adversário obtivesse credenciais e tokens temporários usados em estágios posteriores do ataque, muitas vezes sem acionar controles básicos de filtragem. A resposta teve de incluir revogação de tokens, verificação de logs de entrega e bloqueio de padrões de template abusados.
+
+Recomenda-se revisar sistemas de geração e envio de mensagens, aplicar validações estritas em templates, reforçar autenticação de remetente (SPF/DKIM/DMARC) e incluir análises de conteúdo ofuscado em pipelines de segurança de e-mail.

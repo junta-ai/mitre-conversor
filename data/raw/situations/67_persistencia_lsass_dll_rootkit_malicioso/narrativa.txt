@@ -1,0 +1,5 @@
+Após acesso remoto a uma estação Windows com privilégios administrativos, o atacante realizou reconhecimento local com foco em processos sensíveis. Foi identificado que o processo lsass.exe não estava protegido por mecanismos avançados de EDR.
+
+O invasor utilizou um driver malicioso com funcionalidades de rootkit em modo kernel, que permitia injeção de uma DLL persistente no processo lsass.exe. Esta DLL tinha funções de keylogger e coleta de hashes em tempo real, operando silenciosamente com privilégios de sistema.
+
+Para garantir que o rootkit fosse executado mesmo após reinicializações, o atacante manipulou a inicialização por meio de carregamento de driver não assinado. Utilizou também técnicas para esconder o driver do registro de módulos do sistema.

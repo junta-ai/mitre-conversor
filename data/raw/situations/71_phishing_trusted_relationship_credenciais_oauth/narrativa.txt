@@ -1,0 +1,4 @@
+O ataque iniciou com uma campanha de phishing direcionada a parceiros de negócio de uma empresa de tecnologia. Os e-mails simulavam convites de colaboração no SharePoint, aproveitando-se de uma relação de confiança (Trusted Relationship) entre domínios corporativos.
+O link levava a uma página hospedada em domínio legítimo, explorando a confiança do usuário e solicitando autorização OAuth para um aplicativo malicioso.
+
+Uma vez concedido o token, o atacante obteve acesso direto a caixas de e-mail e arquivos no OneDrive, sem nunca precisar das credenciais em texto claro. O acesso persistiu por semanas, pois os tokens eram renovados automaticamente via refresh. O atacante exfiltrou dados sensíveis e implantou scripts de coleta de contatos para ampliar o ataque.

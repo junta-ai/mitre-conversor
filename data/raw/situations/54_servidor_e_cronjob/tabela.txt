@@ -1,0 +1,12 @@
+| ID    | Nome                              | Descrição                                                                      | Correção                                                                       |
+| ----- | --------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| T1595 | Active Scanning                   | Escaneamento de portas e serviços realizado para identificar vetores expostos. | Limitar varreduras externas via firewall e segmentar exposição de rede.        |
+| T1606 | Forge Web Credentials             | Credenciais em texto claro permitiram login remoto em serviço de banco.        | Implementar criptografia de senhas e segregar permissões de acesso a arquivos. |
+| T1190 | Exploit Public-Facing Application | Exploração de upload arbitrário permitiu execução de código remoto.            | Restringir uploads e validar extensões de arquivos recebidos.                  |
+| T1059 | Command and Scripting Interpreter | Comandos foram executados via webshell em PHP.                                 | Desativar execução de scripts dinâmicos em diretórios públicos.                |
+| T1036 | Masquerading                      | O script substituiu arquivos legítimos para ocultar execução maliciosa.        | Implementar integridade de binários e whitelisting.                            |
+| T1053 | Scheduled Task/Job                | Persistência configurada através de cronjob malicioso.                         | Monitorar modificações em /etc/crontab e alertar novas entradas.               |
+| T1543 | Create or Modify System Process   | Substituição de binário permitiu execução com privilégios elevados.            | Utilizar caminhos absolutos e controle de ACLs restritivas.                    |
+| T1003 | OS Credential Dumping             | Credenciais obtidas de arquivos locais de configuração.                        | Armazenar senhas em cofre seguro e aplicar princípios de menor privilégio.     |
+| T1027 | Obfuscated Files or Information   | Payload PHP ofuscado evitou detecção automática.                               | Aplicar análise estática e comportamental em uploads.                          |
+| T1567 | Exfiltration Over Web Service     | Dados foram exfiltrados via requisições HTTP disfarçadas.                      | Monitorar tráfego de saída e identificar padrões anômalos de upload.           |

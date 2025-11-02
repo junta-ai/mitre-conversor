@@ -1,0 +1,7 @@
+Durante o reconhecimento da infraestrutura, o invasor utilizou kubectl get pods -A para enumerar containers. Identificou-se o pod backup-agent executando como root.
+Foi criado um novo container com kubectl run attacker --image=alpine -- /bin/sh, obtendo shell interativo no cluster.
+
+Dentro do pod, o atacante acessou variáveis de ambiente (env) contendo credenciais AWS, permitindo escalada para conta cloud.
+Persistência foi implementada via criação de ConfigMap malicioso (kubectl create configmap updater --from-file=payload.sh) e associado ao deployment original.
+
+Para evitar detecção, o atacante alterou logs do cluster com kubectl logs --since=0s > /dev/null e removeu eventos de auditoria. Em seguida, iniciou comunicação com C2 via WebSocket na porta 443.

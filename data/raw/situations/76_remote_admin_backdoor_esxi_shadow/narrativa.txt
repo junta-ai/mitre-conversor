@@ -1,0 +1,9 @@
+Durante o teste, foi detectada atividade suspeita em um ambiente híbrido que combinava servidores virtuais ESXi e máquinas físicas usadas para gerenciamento. O acesso inicial ocorreu via um serviço de administração exposto que não possuía proteção adequada, permitindo a instalação de uma instância de administração remota controlada pelo atacante.
+
+Após o acesso inicial, o operador elevou a capacidade de controle do ambiente implantando utilitários de administração disfarçados como componentes legítimos, e preparou rotinas para execução automática que persistiam através de mecanismos de instalação nativos do sistema. Em paralelo, foram feitas varreduras e mapeamentos internos para identificar outras máquinas e serviços de administração na infraestrutura virtualizada.
+
+Com a visibilidade aumentada, o invasor passou a orquestrar pontes entre redes — conectando segmentos separados e estabelecendo canais sobre fronteiras de rede que permitiram controle cruzado entre zonas distintas. Para não depender de um único ponto de controle, foi provisionada infraestrutura de apoio (instâncias externas) que serviram como nexos de comando e transferência de arquivos.
+
+A remoção ou interrupção de um único artefato não interrompia o acesso: mecanismos redundantes foram criados para restaurar o agente em caso de limpeza, inclusive com rotinas que aproveitavam utilitários de sistema confiáveis para reinstalação. Esses comportamentos tornaram a investigação mais complexa, pois a atividade parecia legítima quando observada isoladamente.
+
+Ao final, a organização teve que isolar hosts afetados, revisar as permissões de administração na camada de virtualização e auditar ferramentas nativas de instalação e gestão. A recuperação incluiu reprovisionamento de hipervisores críticos, mudança de chaves de administração e restrição do uso de utilitários de confiança para operações não supervisionadas.

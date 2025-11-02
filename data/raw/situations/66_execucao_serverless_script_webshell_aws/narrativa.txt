@@ -1,0 +1,5 @@
+Em um ambiente corporativo hospedado na AWS, o atacante explorou uma falha de autenticação fraca em um painel interno exposto via subdomínio. Após acesso inicial, foi implantado um WebShell PHP ofuscado na raiz da aplicação.
+
+Com esse ponto de execução, o atacante iniciou comandos remotos e reconhecimento do ambiente, identificando que o backend utilizava funções Lambda expostas via API Gateway. Para evitar detecção e uso de infraestrutura tradicional, os comandos foram migrados para execução indireta por meio das próprias funções serverless.
+
+O invasor criou novas funções Lambda com scripts maliciosos ofuscados em Python, usando chamadas internas a serviços da AWS. O tráfego foi mascarado como legítimo e executado sob contexto privilegiado. A comunicação com o C2 era feita através de objetos no S3 e por meio de DNS tunneling para exfiltração discreta.

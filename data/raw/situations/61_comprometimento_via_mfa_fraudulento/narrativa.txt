@@ -1,0 +1,28 @@
+Durante testes com múltiplas plataformas empresariais, um atacante identificou que o sistema de autenticação da vpn.corp.acme permitia múltiplas tentativas de MFA mesmo após credenciais válidas.
+
+O atacante capturou credenciais de um usuário utilizando um e-mail de spearphishing contendo:
+
+Clique no link para revalidar sua sessão:
+https://vpn.corp-acme[.]com.revalidate-session[.]net
+
+Após obter as credenciais com:
+
+login: j.doe@acme-corp.com
+
+senha: Summer2022!
+
+O atacante utilizou ferramentas como o evilginx2 para capturar o token MFA:
+
+sudo ./evilginx -p acme_mfa_phish
+
+Com isso, foi possível gerar sessões autenticadas e pivotar para a rede interna usando proxychains com DNS tunneling:
+
+proxychains nmap -sT -Pn -p 445 10.0.0.0/24
+
+Na rede interna, foi identificado um servidor com permissão de login RDP onde o atacante injetou código malicioso com:
+
+powershell -encodedCommand <payload>
+
+Esse payload estabelecia conexão reversa via porta 443, comum em redes corporativas. A execução do malware foi feita com o bypass do Windows Remote Management (WinRM):
+
+winrs -r:10.0.0.5 -u:user -p:pass powershell.exe

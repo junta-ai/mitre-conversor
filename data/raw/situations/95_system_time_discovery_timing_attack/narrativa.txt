@@ -1,0 +1,3 @@
+Durante o teste, observou-se que o atacante utilizou a descoberta de configurações de horário do sistema como parte de um ataque temporizado, adaptando execuções de payloads para janelas onde a monitoração era menos ativa. A coleta de informações de horário e fuso ajudou a orquestrar ações coordenadas entre múltiplos hosts.
+
+Instrumentação via syslog e correlação de timestamps foram essenciais para identificar a cronologia dos eventos. A utilização de comandos simples (date, timedatectl) para validar discrepâncias entre hosts foi um indicador inicial que conduziu à descoberta do padrão de execução do invasor.

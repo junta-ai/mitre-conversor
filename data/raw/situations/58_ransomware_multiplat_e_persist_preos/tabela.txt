@@ -1,0 +1,12 @@
+| ID    | Nome                            | Descrição                                       | Correção                                           |
+| ----- | ------------------------------- | ----------------------------------------------- | -------------------------------------------------- |
+| T1021 | Remote Services                 | Disseminação lateral via PsExec.                | Bloquear execução remota não autorizada.           |
+| T1542 | Pre-OS Boot                     | Instalação de bootkit persistente no MBR.       | Validar integridade do bootloader.                 |
+| T1055 | Process Hollowing               | Injeção de código em processos legítimos.       | Monitorar comportamento anômalo de memória.        |
+| T1089 | Disabling Security Tools        | Antivírus desativado programaticamente.         | Proteger configurações de segurança.               |
+| T1486 | Data Encrypted for Impact       | Arquivos criptografados para resgate.           | Backups offline e EDR proativo.                    |
+| T1565 | Data Manipulation               | Alteração de logs e nomes de arquivos.          | Registrar logs centralizados imutáveis.            |
+| T1027 | Obfuscated Files or Information | Binários ofuscados para evitar detecção.        | Analisar assinaturas comportamentais.              |
+| T1567 | Exfiltration Over Web Service   | Envio de chaves via HTTPS para C2.              | Inspecionar tráfego criptografado.                 |
+| T1529 | System Shutdown/Reboot          | Reinicialização forçada após criptografia.      | Monitorar uso de comandos de desligamento massivo. |
+| T1102 | Web Service (C2)                | Comunicação com servidor de controle via HTTPS. | Bloquear domínios maliciosos conhecidos.           |

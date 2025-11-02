@@ -1,0 +1,12 @@
+| ID    | Nome                                     | Descrição                                                   | Correção                                               |
+| ----- | ---------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------ |
+| T1111 | Multi-Factor Authentication Interception | Interceptação do segundo fator com phishing de sessão       | Implementar autenticação resistente a phishing (FIDO2) |
+| T1566 | Phishing                                 | Obtenção de credenciais via link malicioso                  | Treinamentos e filtros de URL                          |
+| T1090 | Proxy                                    | Uso de `proxychains` para ocultar origem do tráfego interno | Detectar anomalias de DNS e tunneling                  |
+| T1200 | Hardware Additions                       | Emulação de dispositivos de entrada remotos                 | Restringir dispositivos não verificados                |
+| T1059 | Command and Scripting Interpreter        | Execução de código com PowerShell                           | Monitorar comandos encode e execução remota            |
+| T1028 | Windows Remote Management                | Execução remota via WinRM                                   | Aplicar restrições de ACL e segmentar redes            |
+| T1036 | Masquerading                             | URL semelhante à legítima usada para enganar usuários       | Implementar DNS Sinkhole para domínios typosquatting   |
+| T1043 | Commonly Used Port                       | Comunicação oculta usando porta HTTPS (443)                 | Analisar payloads mesmo em portas permitidas           |
+| T1212 | Exploitation for Credential Access       | Aproveitamento da fragilidade do MFA para obter tokens      | Monitoramento de sessões simultâneas por usuário       |
+| T1110 | Brute Force                              | Múltiplas tentativas de MFA permitidas sem bloqueio         | Implementar limites e alertas de tentativas falhas     |

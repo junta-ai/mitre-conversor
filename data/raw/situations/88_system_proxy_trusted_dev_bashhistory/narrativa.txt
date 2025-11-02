@@ -1,0 +1,3 @@
+Durante o teste, um operador malicioso aproveitou utilitários de desenvolvimento confiáveis para executar componentes intermediários que carregavam payloads adicionais. A presença de proxies configurados por scripts permitiu a reintrodução de ferramentas sem acionar controles de download direto, dificultando o bloqueio por listas negativas.
+
+Foi possível também observar coleta de histórico de comandos em nós Linux, com o invasor extraindo entradas úteis para escalonamento e movimentação lateral. Auditoria via ELK e análise de .bash_history foram determinantes para reconstruir o fluxo de ações e identificar quais ferramentas foram transferidas e executadas como parte do processo.
