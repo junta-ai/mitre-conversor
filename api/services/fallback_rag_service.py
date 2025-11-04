@@ -109,21 +109,32 @@ class FallbackRAGService:
         query_keywords = self._extract_keywords(query)
         technique_keywords = technique.get("keywords", [])
 
-        if not query_keywords or not technique_keywords:
+        if not query_keywords:
+            return 0.0
+
+        if not technique_keywords:
             return 0.0
 
         common_words = set(query_keywords) & set(technique_keywords)
-
-        similarity = len(common_words) / max(
+        base_similarity = len(common_words) / max(
             len(query_keywords), len(technique_keywords)
         )
 
         technique_name_words = self._extract_keywords(technique["technique_name"])
         name_matches = set(query_keywords) & set(technique_name_words)
+        name_bonus = 0.0
         if name_matches:
-            similarity += 0.2 * len(name_matches) / len(technique_name_words)
+            name_bonus = 0.3 * len(name_matches) / max(len(technique_name_words), 1)
 
-        return min(similarity, 1.0)
+        tactic_words = self._extract_keywords(technique.get("tactic", ""))
+        tactic_matches = set(query_keywords) & set(tactic_words)
+        tactic_bonus = 0.0
+        if tactic_matches:
+            tactic_bonus = 0.2 * len(tactic_matches) / max(len(tactic_words), 1)
+
+        total_similarity = base_similarity + name_bonus + tactic_bonus
+
+        return min(total_similarity, 1.0)
 
     def search_techniques(self, query: str, top_k: int = 5) -> List[SearchResult]:
         """Busca técnicas usando correspondência de palavras-chave"""
@@ -136,9 +147,7 @@ class FallbackRAGService:
 
             for technique in self.techniques:
                 similarity = self._calculate_similarity(query, technique)
-
-                if similarity > 0.7:
-                    scored_techniques.append((technique, similarity))
+                scored_techniques.append((technique, similarity))
 
             scored_techniques.sort(key=lambda x: x[1], reverse=True)
 
@@ -173,8 +182,10 @@ class FallbackRAGService:
             search_results = self.search_techniques(narrative, top_k=top_k)
 
             techniques = []
+            below_threshold = False
+
             for result in search_results:
-                if result.similarity_score >= 0.2:
+                if result.similarity_score >= 0.15:
                     techniques.append(
                         TechniqueMatch(
                             technique_id=result.technique_id,
@@ -187,14 +198,31 @@ class FallbackRAGService:
                         )
                     )
 
+            if not techniques and search_results:
+                below_threshold = True
+                for result in search_results:
+                    techniques.append(
+                        TechniqueMatch(
+                            technique_id=result.technique_id,
+                            technique_name=result.technique_name,
+                            tactic=result.tactic,
+                            description=result.description,
+                            similarity_score=result.similarity_score,
+                            activity_description=None,
+                            correction=None,
+                        )
+                    )
+                logger.warning(
+                    f"Nenhuma técnica acima do threshold (0.15). Retornando {len(techniques)} técnicas com maior similaridade"
+                )
+
             processing_time = time.time() - start_time
 
             return {
                 "narrative": narrative,
                 "techniques": techniques,
                 "processing_time": processing_time,
-                "mode": "fallback",
-                "note": "Classificação usando correspondência de palavras-chave (modo degradado)",
+                "below_threshold": below_threshold,
             }
 
         except Exception as e:

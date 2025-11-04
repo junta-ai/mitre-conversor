@@ -101,21 +101,20 @@ class RAGService:
 
             results = []
             for score, idx in zip(scores[0], indices[0]):
-                if float(score) >= 0.7:
-                    technique = self.techniques[idx]
-                    results.append(
-                        SearchResult(
-                            technique_id=technique["technique_id"],
-                            technique_name=technique["technique_name"],
-                            tactic=technique["tactic"],
-                            description=(
-                                technique["description"][:500] + "..."
-                                if len(technique["description"]) > 500
-                                else technique["description"]
-                            ),
-                            similarity_score=float(score),
-                        )
+                technique = self.techniques[idx]
+                results.append(
+                    SearchResult(
+                        technique_id=technique["technique_id"],
+                        technique_name=technique["technique_name"],
+                        tactic=technique["tactic"],
+                        description=(
+                            technique["description"][:500] + "..."
+                            if len(technique["description"]) > 500
+                            else technique["description"]
+                        ),
+                        similarity_score=float(score),
                     )
+                )
 
             return results
 
@@ -130,8 +129,9 @@ class RAGService:
             search_results = self.search_techniques(narrative, top_k=top_k)
 
             techniques = []
-            for result in search_results:
+            below_threshold = False
 
+            for result in search_results:
                 if result.similarity_score >= 0.7:
                     techniques.append(
                         TechniqueMatch(
@@ -145,12 +145,32 @@ class RAGService:
                         )
                     )
 
+            if not techniques and search_results:
+                below_threshold = True
+                best_result = search_results[0]
+                techniques.append(
+                    TechniqueMatch(
+                        technique_id=best_result.technique_id,
+                        technique_name=best_result.technique_name,
+                        tactic=best_result.tactic,
+                        description=best_result.description,
+                        similarity_score=best_result.similarity_score,
+                        activity_description=None,
+                        correction=None,
+                    )
+                )
+                logger.warning(
+                    f"Nenhuma técnica acima do threshold (0.7). Retornando técnica com maior similaridade: "
+                    f"{best_result.technique_id} ({best_result.similarity_score:.2f})"
+                )
+
             processing_time = time.time() - start_time
 
             return {
                 "narrative": narrative,
                 "techniques": techniques,
                 "processing_time": processing_time,
+                "below_threshold": below_threshold,
             }
 
         except Exception as e:
