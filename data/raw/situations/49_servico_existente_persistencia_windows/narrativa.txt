@@ -1,0 +1,11 @@
+Durante a pós-exploração em um servidor Windows comprometido, o atacante buscou uma forma de manter acesso persistente sem levantar alertas. Ao identificar um serviço legítimo de backup que era executado como SYSTEM, o atacante modificou sua configuração de binário.
+
+Utilizando sc config, foi apontado um novo caminho para o executável do serviço:
+
+sc config BackupService binPath= "C:\ProgramData\malware_backdoor.exe"
+
+Com isso, a próxima vez que o serviço fosse iniciado manualmente ou por agendamento, o malware seria executado com os privilégios originais do serviço — neste caso, com nível de sistema.
+
+A ação foi completada sem criação de novos serviços ou artefatos adicionais, dificultando a detecção. A ferramenta Sysinternals Autoruns só detectaria essa modificação em auditoria detalhada.
+
+Essa técnica foi usada para garantir persistência após reboot e execução periódica via política interna da empresa.

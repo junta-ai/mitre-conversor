@@ -1,0 +1,15 @@
+Durante o teste, após o comprometimento inicial de uma estação Windows via phishing (simulado previamente), foi estabelecido um canal de comunicação Command and Control (C2) utilizando a ferramenta Covenant, configurada para operar sobre a porta 443. O tráfego foi camuflado como HTTPS válido, aproveitando um domínio legítimo hospedado em CDN para realizar domain fronting, dificultando a detecção por proxies e sistemas de inspeção.
+
+A payload implantada incluía múltiplos listeners e failover de DNS para manter o controle mesmo com tentativas de bloqueio, caracterizando o uso de fallback channels. Essa infraestrutura também foi protegida por técnicas de data obfuscation, embaralhando o conteúdo transmitido com codificação base64 e compressão antes da criptografia.
+
+Adicionalmente, a comunicação C2 utilizava custom cryptographic protocol, desenvolvido com uma camada XOR + RC4 sobre HTTPS, dificultando sua identificação mesmo por soluções de TLS inspection.
+
+Para garantir persistência e modularidade, o agente Covenant foi empacotado em um script PowerShell que era executado via Scheduled Task, utilizando o comando:
+
+SCHTASKS /Create /SC MINUTE /MO 15 /TN "UpdateSvc" /TR "powershell -w hidden -nop -enc <payload>" /RU SYSTEM
+
+Durante a movimentação lateral, o atacante utilizou Pass the Hash com hashes NTLM obtidos anteriormente, utilizando a ferramenta pth-winexe para executar comandos remotamente sem precisar da senha em texto claro.
+
+Foi também realizada coleta automatizada de dados através da técnica Automated Collection, onde o agente implantado extraía arquivos do diretório “Documents” de todos os usuários, realizando upload periódico para o servidor C2.
+
+Por fim, para dificultar a detecção, o atacante executou técnicas de DLL Side-Loading, copiando uma DLL maliciosa com nome legítimo para o mesmo diretório de um binário confiável, abusando da ordem de busca do sistema Windows.

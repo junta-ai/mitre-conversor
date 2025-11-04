@@ -1,0 +1,5 @@
+| ID    | Nome                         | Descrição                                                                                      | Correção                                                                                     |
+| ----- | ---------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| T1200 | Hardware Additions           | Um periférico USB adulterado foi utilizado para capturar teclas digitadas localmente.          | Restringir o uso de dispositivos USB desconhecidos e aplicar políticas de controle de porta. |
+| T1056 | Input Capture                | O hardware armazenou localmente tudo que era digitado pela vítima sem ativar alertas.          | Utilizar software de monitoramento de periféricos e implementar autenticação por hardware.   |
+| T1123 | Audio Capture (parcialmente) | Além do teclado, o mesmo dispositivo pode incluir microfone embutido (em variantes avançadas). | Desabilitar recursos não utilizados nos dispositivos USB conectados.                         |

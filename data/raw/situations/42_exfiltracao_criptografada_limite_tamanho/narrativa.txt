@@ -1,0 +1,11 @@
+Após o comprometimento de uma estação de trabalho, o atacante desenvolveu um método de exfiltração discreta de documentos sensíveis armazenados localmente. A estratégia envolveu compressão, criptografia e fragmentação dos dados, para evitar detecção por sistemas de prevenção de perda de dados (DLP).
+
+Utilizando um script em PowerShell, o atacante automatizou a coleta e compressão dos arquivos .docx e .xlsx localizados em C:\Users\Public\DocumentosSigilosos\, criptografando-os com AES-256 e dividindo o arquivo em blocos de 500 KB cada, utilizando os comandos:
+
+Compress-Archive -Path C:\Users\Public\DocumentosSigilosos* -DestinationPath backup.zip
+Invoke-Expression "openssl enc -aes-256-cbc -salt -in backup.zip -out backup.enc -k Sup3rS3nha!"
+Split-File -Path backup.enc -ChunkSize 512000
+
+A transferência dos blocos foi realizada com pequenas requisições HTTPS simulando comportamento de serviços legítimos, como pingbacks ou uploads de API REST, com intervalos aleatórios entre cada envio. Foram utilizados headers falsos para mascarar o tráfego como parte de comunicações normais de aplicações corporativas.
+
+Com essa abordagem, o atacante evitou alertas baseados em tamanho de dados ou padrão de tráfego, completando a exfiltração em cerca de 90 minutos sem ser detectado pelos sistemas de segurança da organização.

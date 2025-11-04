@@ -1,0 +1,3 @@
+Durante o teste, foi constatado que páginas públicas foram modificadas de forma a exibir conteúdo alterado, indicando acesso ao repositório ou ao webroot de publicação. O invasor plantou arquivos de marcação que substituíram recursos estáticos usados por portais públicos.
+
+A investigação correlacionou commits e deploys com o momento das alterações e identificou que o pipeline de publicação aceitava conteúdo sem validação suficiente. Ferramentas como GitLab CI e logs de deploy ajudaram a rastrear o vetor de inserção e permitiram restaurar versões saudáveis do site.

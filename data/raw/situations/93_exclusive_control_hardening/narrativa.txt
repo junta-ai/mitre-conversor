@@ -1,0 +1,3 @@
+Durante o teste, uma conta de automação foi comprometida e o invasor rapidamente consolidou controle exclusivo sobre um conjunto de recursos críticos, de modo a impedir concorrência por remoção ou intervenção. O ambiente atacado combinava infraestrutura on-premises e serviços gerenciados na nuvem; a presença do atacante foi inicialmente sutil, detectada por anomalias em processos de manutenção automatizada.
+
+O operador criou mecanismos para receber e processar comandos apenas quando determinadas condições se cumpriam, dificultando a identificação de sinais por alertas tradicionais. Ferramentas de monitoramento (Splunk, CloudTrail) foram úteis para reconstruir a cadeia de eventos e revelar ações que trocavam proprietário/controle de recursos em momentos estratégicos.

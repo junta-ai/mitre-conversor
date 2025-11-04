@@ -1,0 +1,12 @@
+| ID    | Nome                                   | Descrição                                                        | Correção                                                           |
+| ----- | -------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ |
+| T1597 | Search Open Websites/Domains           | Tokens foram localizados publicamente via buscas em repositórios | Implementar varreduras automáticas por segredos expostos           |
+| T1213 | Data from Information Repositories     | Dados acessados via APIs e buckets internos                      | Controlar acesso via roles e políticas de autenticação             |
+| T1002 | Data Compressed                        | Dados comprimidos antes da extração                              | Monitorar uso de compressão em ambientes sensíveis                 |
+| T1048 | Exfiltration Over Alternative Protocol | Dados exfiltrados via serviço HTTPS externo                      | Bloquear destinos suspeitos e monitorar tráfego HTTPS              |
+| T1071 | Application Layer Protocol             | Exfiltração utilizando HTTPS                                     | Monitoramento de tráfego mesmo em protocolos permitidos            |
+| T1053 | Scheduled Task/Job                     | Persistência via agendamento de execução remota                  | Auditar alterações de cronjobs em ambientes SaaS                   |
+| T1592 | Gather Victim Org Information          | Coleta de dados públicos da organização                          | Monitoramento de exposições em ambientes de repositório público    |
+| T1114 | Email Collection                       | Coleta de e-mails de sistemas SaaS autenticados                  | Aplicar filtros de segurança em APIs                               |
+| T1196 | Control Panel Items                    | Execução camuflada com elementos de painel gráfico               | Restringir execução de componentes administrativos não autorizados |
+| T1105 | Ingress Tool Transfer                  | Transferência de scripts externos via agendamentos               | Restringir chamadas remotas e filtrar destinos não confiáveis      |

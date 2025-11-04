@@ -1,0 +1,3 @@
+Para evitar a detecção por sistemas de IDS/IPS baseados em padrão, o atacante configurou um túnel reverso criptografado sobre a porta 25 (SMTP), disfarçado como tráfego legítimo de envio de e-mails. O túnel foi criado utilizando stunnel, e o canal encapsulava comandos de shell e dados exfiltrados diretamente para o servidor C2.
+
+Como a porta 25 era liberada por firewall e raramente inspecionada por conter tráfego legítimo, o canal permaneceu ativo por dias, sendo utilizado para movimentação lateral e extração de arquivos confidenciais sem ser detectado.

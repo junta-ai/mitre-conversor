@@ -1,0 +1,11 @@
+Durante a simulação, foi realizada a exploração de um endpoint Windows desatualizado. Após obter privilégios de administrador local por meio de exploração prévia, o atacante optou por manter persistência em nível profundo, sobrevivendo a reinicializações e até formatações parciais.
+
+O atacante preparou um bootkit customizado, que substitui componentes da cadeia de inicialização do sistema operacional. Ele manipulou o setor de boot utilizando um script especializado, sobrescrevendo o Master Boot Record (MBR) com código malicioso que carregava um payload oculto antes mesmo do carregamento do sistema operacional.
+
+A injeção foi feita com uso da ferramenta BOOTKIT Injector, da seguinte forma:
+
+bootkit_injector.exe --target \.\PhysicalDrive0 --payload bootloader_malicioso.bin
+
+Após a execução bem-sucedida e a reinicialização da máquina, o bootkit foi ativado automaticamente, carregando o malware residente na memória antes do carregamento do Windows, tornando-o praticamente invisível para soluções de EDR.
+
+O payload incluído permitia o download de comandos adicionais, acesso remoto e manipulação do sistema operacional em nível de kernel.

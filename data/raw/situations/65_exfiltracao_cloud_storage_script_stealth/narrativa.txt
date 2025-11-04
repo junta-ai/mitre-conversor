@@ -1,0 +1,5 @@
+Durante um exercício de Red Team, o invasor comprometeu um servidor de aplicação Linux com acesso à internet. A persistência foi estabelecida por meio de modificação maliciosa do shell do usuário root (~/.bashrc), que executava automaticamente um script ao iniciar a sessão SSH. Este script fazia a coleta silenciosa de arquivos sensíveis no diretório /var/www/html/uploads/, os quais eram periodicamente enviados para um bucket S3 não autorizado.
+
+Para evitar detecção, o atacante empregou técnicas para esconder arquivos, modificar permissões de diretório e utilizar APIs nativas para comunicação HTTPS sem ferramentas externas. O script era agendado via cron com obfuscação do nome, garantindo a execução contínua sem levantar alertas. Antes de cada envio, os arquivos eram compactados com senhas e injetados em arquivos PNG para disfarçar sua natureza.
+
+A exfiltração era feita diretamente para um serviço em nuvem público, usando bibliotecas Python e tokens obtidos por meio da exploração de arquivos de configuração de aplicações web.

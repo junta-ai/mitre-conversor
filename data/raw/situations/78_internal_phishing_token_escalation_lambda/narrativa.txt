@@ -1,0 +1,9 @@
+Durante o teste, foi identificada uma campanha de phishing interno que visou equipes de operações, usando mensagens cuidadosamente direcionadas com anexos e links aparentemente legítimos. O ambiente tinha integrações entre aplicações web internas e serviços de cloud, o que permitiu que um token de API exposto em logs e arquivos de diagnóstico fosse reutilizado pelo atacante.
+
+Com o token em posse, o invasor autenticou-se em uma API interna que não aplicava checagens completas de autorização, obtendo listas de recursos e referências a buckets de armazenamento. Em seguida, foram exploradas dependências e scripts de infraestrutura, que continham credenciais ou referências a perfis com permissões mais elevadas.
+
+O atacante transferiu artefatos e agentes para hosts internos por meio de ferramentas de transferência comuns, evitando o uso de protocolos incomuns para não acionar alertas. Também aproveitou sessões administrativas abertas e mecanismos de compartilhamento para mover-se lateralmente sem gerar eventos de autenticação clássicos.
+
+Com acesso a funções de orquestração, foi possível executar código em ambientes de execução sem servidor modificando configurações de função para incluir pacotes adicionais. Esse vetor permitiu execução remota de payloads com as credenciais da função, atingindo recursos até então restritos.
+
+A resposta foi focada em revogação imediata de tokens e credenciais, avaliação de logs para identificar todos os endpoints acessados com o token comprometido e revisão das políticas que permitiam exposição de dados sensíveis em logs públicos e endpoints debug.

@@ -1,0 +1,11 @@
+Durante uma simulação de ataque direcionado a um ambiente corporativo, o atacante obteve acesso inicial a uma estação de trabalho Windows por meio de phishing com macro maliciosa. Após a execução, o payload iniciou o contato com o servidor de Comando e Controle (C2) utilizando uma série de técnicas evasivas para dificultar sua detecção.
+
+A primeira fase envolvia um canal simples de beacon via porta comum (porta 443), simulando tráfego HTTPS legítimo para estabelecer comunicação inicial com o domínio cdn.safecomm.work, registrado em serviço de DNS dinâmico. O payload então ativava um módulo de troca de chaves para iniciar criptografia em múltiplas camadas (Multilayer Encryption), onde cada estágio posterior do payload era decodificado localmente com uma chave única gerada por sessão.
+
+Ao longo do tempo, o canal evoluiu para um modelo multiestágio (Multi-Stage Channels), onde o C2 fornecia diferentes tarefas em etapas — como keylogging, coleta de arquivos e screenshot — disparadas apenas sob certas condições (ex: ausência de movimento do mouse).
+
+Para evitar bloqueios de rede, o agente C2 implementou Protocol Tunneling, encapsulando comandos de controle dentro de pacotes DNS personalizados, que trafegavam pela porta 53 (não convencional para esse tipo de atividade). O tráfego era disfarçado com Data Encoding base64 e rotacionava entre domínios *.dnscomm.net, dificultando a detecção por proxies convencionais.
+
+O servidor C2 utilizava um framework Custom Command and Control Protocol, desenvolvido especificamente para esse ataque, operando fora dos padrões tradicionais de HTTP/HTTPS, usando um formato binário proprietário para comunicação.
+
+Para ofuscar ainda mais sua infraestrutura, o atacante empregou técnicas de Hide Infrastructure, utilizando proxies em países diferentes e servidores em instâncias temporárias de serviços em nuvem (como EC2 spot instances), dificultando a atribuição e bloqueio.

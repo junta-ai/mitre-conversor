@@ -1,0 +1,5 @@
+O atacante desenvolveu uma extensão maliciosa para o navegador Google Chrome, disfarçada de ferramenta de produtividade. A extensão foi publicada em fóruns públicos e redes sociais voltadas a profissionais de TI como “WebAssist Pro”.
+
+Após a instalação pelo usuário, a extensão solicitava permissões amplas, como leitura e modificação de dados em todos os sites visitados. Com essas permissões, o código JavaScript embutido injetava scripts para capturar sessões de login, além de manipular respostas HTTP para redirecionar o usuário para domínios controlados pelo atacante.
+
+A extensão também incluía persistência por meio de autoatualizações controladas remotamente via um servidor C2 hospedado em VPS anônimo, contornando proteções convencionais. Ferramentas como Evilginx2 foram usadas para captura de tokens em sessões autenticadas.

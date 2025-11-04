@@ -1,0 +1,11 @@
+Durante a fase de reconhecimento externo da aplicação da empresa www.exemplo-corp.com.br, foram realizadas buscas por informações públicas em sites de vagas e perfis corporativos no LinkedIn, Glassdoor e GitHub. Através da análise do domínio e conteúdos disponíveis via mecanismos de busca, foi possível identificar informações sobre a estrutura da organização, como o uso de servidores Windows e soluções de endpoint da McAfee, bem como nomes e cargos de colaboradores de TI — especialmente um usuário denominado “marcos.lima” que atuava como analista de suporte.
+
+Em paralelo, observou-se que o domínio webmail.exemplo-corp.com.br utilizava um certificado SSL válido e estava vinculado ao serviço Outlook Web Access. Essa descoberta foi feita a partir de varredura passiva com o Shodan, além de análise de histórico DNS via securitytrails.com.
+
+Com base nesses dados, foi montada uma campanha de spearphishing direcionada, simulando um aviso de expiração de senha. A mensagem continha um link encurtado redirecionando para uma página falsa hospedada em azurewebsites.net, desenvolvida com aparência idêntica ao portal da empresa.
+
+Após a vítima interagir com o link malicioso (técnica de Spearphishing Link) e submeter suas credenciais, o atacante obteve acesso ao portal interno da empresa.
+
+Uma vez com acesso à VPN interna, foram utilizadas ferramentas como BloodHound, SharpHound e PowerView para mapear o ambiente e identificar grupos de permissões críticas, como Domain Admins, além de listar softwares de segurança ativos, serviços em execução e compartilhamentos de rede acessíveis no domínio. Por exemplo, a enumeração com Get-ADGroupMember, Get-WmiObject -Class Win32_Service e net view \\host /all revelou serviços legados e pastas compartilhadas com permissões fracas.
+
+Posteriormente, foram detectadas contas de serviço com senhas fracas ou vazadas reutilizadas, facilitando o acesso a sistemas administrativos de backup e infraestrutura.

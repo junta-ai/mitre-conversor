@@ -1,0 +1,7 @@
+| ID    | Nome                         | Descrição                                                               | Correção                                                               |
+| ----- | ---------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| T1021 | Remote Services              | O acesso inicial foi feito via RDP utilizando credenciais válidas.      | Restringir acesso RDP por IP, aplicar MFA e segmentação de rede.       |
+| T1113 | Screen Capture               | Capturas de tela foram realizadas usando script PowerShell oculto.      | Monitorar atividades gráficas não usuais e bloquear automação de GUI.  |
+| T1053 | Scheduled Task/Job           | O script foi executado periodicamente via tarefa agendada.              | Auditar criação de tarefas e limitar permissões de agendamento.        |
+| T1005 | Data from Local System       | Dados sensíveis foram coletados diretamente da sessão ativa do usuário. | Monitorar acessos a diretórios temporários e aplicações em foreground. |
+| T1041 | Exfiltration Over C2 Channel | As imagens capturadas foram enviadas via HTTPS para servidor externo.   | Inspecionar saídas HTTPS e limitar destinos desconhecidos por DLP.     |

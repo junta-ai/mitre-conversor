@@ -1,0 +1,5 @@
+| ID    | Nome            | Descrição                                                                                 | Correção                                                                                |
+| ----- | --------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| T1056 | Input Capture   | A evasão foi realizada evitando a digitação e executando apenas simulações de mouse.      | Implementar monitoramento de ações em janelas sensíveis e capturar eventos gráficos.    |
+| T1204 | User Execution  | O usuário permitiu a execução do script disfarçado de assistente de produtividade.        | Bloquear execução de scripts não assinados e aplicar regras de execução por grupo.      |
+| T1562 | Impair Defenses | Ferramentas de proteção foram desativadas via GUI com movimentação automatizada do mouse. | Monitorar alterações em interfaces críticas e acionar alertas por interações suspeitas. |

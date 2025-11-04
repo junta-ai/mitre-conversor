@@ -1,0 +1,9 @@
+Durante o teste, foi observado um padrão de exfiltração que dividia dados sensíveis em múltiplos pacotes pequenos, transmitidos em horários e volumes que imitavam o tráfego legítimo da aplicação. O ambiente possuía proxies e filtros, então o atacante evitou grandes transferências únicas e optou por um canal multilayer e encriptado.
+
+Além da exfiltração, o invasor implantou rotinas de destruição condicional que poderiam apagar dispositivos ou sobrescrever conteúdo se sinais de investigação fossem detectados. Esse mecanismo foi acionado de forma programada, visando dificultar a recuperação completa e causar impacto operacional. Em algumas máquinas foram executados comandos que limpavam áreas específicas de disco após a exfiltração ter sido confirmada.
+
+Os esforços de persistência combinavam canais redundantes: se o canal principal fosse bloqueado, havia rotas secundárias que usavam proxies e saltos para alcançar destinos controlados pelo atacante. Esse setup reduziu a eficácia de bloqueios simples baseados em IP e exigiu análise de correlação mais complexa.
+
+A análise para detecção exigiu correlacionar logs de rede, proxies e pontos finais para reconstructar as rotas de exfiltração. Ao detectar padrões de exclusão e dano, a resposta priorizou a contenção de backups e a recuperação de dados em sistemas imunes aos mecanismos de destruição.
+
+Como ações corretivas, foram isolados canais suspeitos, aplicadas regras de inspeção de payload e fortalecidos processos de backup offline e imutável para garantir recuperação após tentativas de destruição.

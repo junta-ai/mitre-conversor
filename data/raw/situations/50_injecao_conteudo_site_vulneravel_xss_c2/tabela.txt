@@ -1,0 +1,7 @@
+| ID    | Nome                              | Descrição                                                        | Correção                                                                 |
+| ----- | --------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| T1059 | Command and Scripting Interpreter | O código JavaScript executava comandos no contexto do navegador. | Aplicar CSP rígida e sanitizar todos os inputs de usuários.              |
+| T1204 | User Execution                    | O ataque dependia da interação do usuário com link malicioso.    | Realizar campanhas internas de conscientização e alerta.                 |
+| T1190 | Exploit Public-Facing Application | Foi explorada falha de XSS em site exposto publicamente.         | Corrigir validações de entrada e realizar testes contínuos de segurança. |
+| T1071 | Application Layer Protocol        | A comunicação C2 foi feita sobre WebSocket.                      | Monitorar conexões WebSocket incomuns e inspecionar payloads via proxy.  |
+| T1568 | Dynamic Resolution                | O script usava DNS dinâmico para se reconectar após bloqueios.   | Restringir uso de DNS dinâmico e aplicar DNS Sinkhole.                   |

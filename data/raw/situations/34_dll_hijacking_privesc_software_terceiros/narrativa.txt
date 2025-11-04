@@ -1,0 +1,3 @@
+Após obter acesso limitado em uma máquina Windows, o atacante identificou que um software de terceiros instalado (um editor de imagem) executava DLLs sem validar sua origem, procurando arquivos em diretórios do PATH antes de utilizar os oficiais do sistema.
+
+O atacante criou uma DLL maliciosa com uma função exportada esperada pela aplicação e a salvou em um diretório acessível que era priorizado na busca de bibliotecas. Quando o software foi executado, a DLL foi carregada, permitindo que o código malicioso fosse executado com os privilégios da aplicação — que, nesse caso, era um serviço com permissões elevadas.

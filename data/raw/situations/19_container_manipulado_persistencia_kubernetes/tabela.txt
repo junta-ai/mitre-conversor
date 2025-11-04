@@ -1,0 +1,7 @@
+| ID    | Nome                             | Descrição                                                                      | Correção                                                                           |
+| ----- | -------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| T1595 | Active Scanning                  | O atacante identificou o painel Kubernetes exposto e acessível publicamente.   | Restringir acesso ao painel administrativo e exigir autenticação forte.            |
+| T1078 | Valid Accounts                   | Uma conta de serviço privilegiada foi criada para manter o acesso persistente. | Aplicar controle de RBAC e revisar periodicamente permissões de contas de serviço. |
+| T1609 | Container Administration Command | O atacante executou comandos via kubectl para criar e manipular pods.          | Restringir uso de kubectl e implementar logs de auditoria na API.                  |
+| T1036 | Masquerading                     | O container malicioso foi nomeado de forma semelhante a um serviço legítimo.   | Aplicar políticas de integridade de imagem e assinatura de containers.             |
+| T1105 | Ingress Tool Transfer            | Um script remoto foi baixado e executado dentro do container comprometido.     | Restringir conexões de saída e validar origem de imagens em repositórios.          |

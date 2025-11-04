@@ -1,0 +1,9 @@
+Durante o desenvolvimento de um binário malicioso, o atacante percebeu que ele era identificado por soluções antivírus mesmo após ofuscação tradicional. Para burlar as assinaturas estáticas usadas por antivírus e EDRs, foi utilizada a técnica de Binary Padding.
+
+O atacante inseriu dados inócuos, blocos aleatórios e instruções “NOP” ao longo do código, alterando seu hash e estrutura, sem modificar sua funcionalidade. Isso foi feito com o comando:
+
+padbin.exe --input malware.exe --output malware_padded.exe --junk-blocks 50
+
+Após o padding, o binário passou despercebido pelos mecanismos de detecção baseados em assinatura, permitindo que fosse transferido para a máquina-alvo sem alerta.
+
+O executável foi transferido com certutil e executado normalmente, estabelecendo conexão com o servidor de C2 sem que o EDR bloqueasse a execução.

@@ -1,0 +1,5 @@
+Durante a simulação de ataque, foi deixado intencionalmente um dispositivo USB próximo ao ambiente físico da organização. Ao ser conectado por um colaborador, o dispositivo executou automaticamente um script de inicialização configurado para estabelecer uma conexão reversa com o atacante, permitindo acesso direto ao terminal da máquina comprometida.
+
+Esse acesso inicial foi utilizado para extrair credenciais salvas nos navegadores por meio de uma ferramenta de recuperação, o que permitiu escalar o ataque para outras máquinas na mesma rede. A movimentação lateral foi realizada através de compartilhamentos administrativos abertos, identificados por varredura com ferramentas de enumeração de rede.
+
+Ferramentas como PsExec e Mimikatz foram transferidas via rede interna para hosts adjacentes, onde foram executadas para obtenção de credenciais adicionais e hashes em memória. O atacante garantiu persistência instalando uma extensão maliciosa do Office, posicionada no diretório de inicialização automática do Word, garantindo execução a cada abertura do aplicativo.

@@ -1,0 +1,9 @@
+Durante a fase inicial, o atacante utilizou ferramentas como Maltego e Recon-ng para realizar buscas em fontes fechadas (Search Closed Sources), como repositórios privados expostos, perfis de funcionários em portais internos e sistemas legados indexados por motores de busca específicos de intranet. A partir disso, coletou domínios secundários, credenciais expostas e estrutura de diretórios da organização.
+
+Com essas informações, o atacante passou para o desenvolvimento de um payload personalizado por meio da técnica Stage Capabilities, utilizando o framework Empire combinado com um módulo customizado que se adaptava a diferentes navegadores e sistemas operacionais. Esse payload foi incorporado em um site comprometido utilizado como isca.
+
+A vítima acessou o site durante a navegação casual, ativando o Drive-by Compromise — onde o código malicioso injetado por meio de um iframe carregava silenciosamente um script via PowerShell obfuscado. O script se aproveitava da execução automática por meio de MSHTA (Microsoft HTML Application Host), sem exibir janelas ou solicitar permissões adicionais.
+
+Com acesso inicial ao sistema da vítima, o atacante injetou um binário usando Regsvcs/Regasm, registrando uma DLL que operava como backdoor residente. Para manter o acesso mesmo após reinicializações, foi criada uma tarefa agendada maliciosa que manipulava entradas do Registro e alterava configurações do Launchctl (no caso de ambiente híbrido Windows/macOS).
+
+Durante a movimentação lateral, foi detectada uma instância em nuvem AWS associada ao mesmo usuário comprometido. O atacante explorou Cloud Administration Command via AWS CLI configurado na máquina da vítima, usando as credenciais válidas exportadas da sessão atual. Foram realizadas alterações em permissões de buckets e acesso a dados sensíveis de outras instâncias.

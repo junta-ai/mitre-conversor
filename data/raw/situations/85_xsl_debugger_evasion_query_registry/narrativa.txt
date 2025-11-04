@@ -1,0 +1,9 @@
+Durante o teste, atividades de auditoria registraram tentativas repetidas de exploração de componentes de processamento de dados baseados em transformações; essas tentativas visavam inserir lógica malformada em fluxos de transformação de documentos. Os sistemas afetados processavam documentos e templates XML como parte de integrações com parceiros.
+
+O atacante explorou pontos em pipelines de transformação que processavam XSL ou similares para incluir instruções que desviavam o fluxo normal de dados, permitindo execução condicional de payloads em momentos específicos de processamento. Isso foi realizado de forma que logs padrão inicialmente não apontaram para anomalias, pois as transformações eram válidas do ponto de vista da sintaxe.
+
+Ao mesmo tempo, mecanismos de evasão de depuração foram ativados para detectar ferramentas de análise e alterar o comportamento quando tais ferramentas eram presentes, reduzindo a eficácia de tentativas iniciais de engenharia reversa. A combinação de manipulação de transformação e evasão complicou bastante a correlação entre entradas maliciosas e execuções subsequentes.
+
+Também ocorreu leitura e alteração de chaves de configuração no registro do sistema, o que permitiu ao atacante ajustar parâmetros de execução e persistir indicadores que facilitavam reativação de cargas maliciosas. A operação requereu análise aprofundada de logs de transformação e do histórico de alterações no registro.
+
+As recomendações incluem isolar pipelines de transformação, validar e sanitizar entradas antes de aplicar transformações, endurecer canais de debug e evitar exposição de ambientes de análise que possam ser detectados por mecanismos anti-debug.

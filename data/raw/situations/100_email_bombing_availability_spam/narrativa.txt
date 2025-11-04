@@ -1,0 +1,3 @@
+Durante o teste, notou-se uma campanha massiva de envio de e-mails que sobrecarregou filas internas e afetou a disponibilidade do sistema de mensagens, com impacto sobre a operação de helpdesk e notificações críticas. O atacante utilizou contas comprometidas e scripts automatizados para gerar alto volume de mensagens.
+
+Logs de SMTP e métricas de taxa de envio (Postfix/Exchange telemetry) permitiram identificar a origem e bloquear rapidamente as contas e os endpoints responsáveis, além de aplicar regras de rate limiting e verificações de reputação. A mitigação também envolveu isolar filas e acionar procedimentos de contingência para alertas críticos.

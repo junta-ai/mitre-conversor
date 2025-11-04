@@ -1,0 +1,7 @@
+| ID    | Nome                            | Descrição                                                                     | Correção                                                            |
+| ----- | ------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| T1027 | Obfuscated Files or Information | O binário foi ofuscado com blocos aleatórios para modificar sua assinatura.   | Usar antivírus com análise heurística e sandboxing em tempo real.   |
+| T1036 | Masquerading                    | O binário foi renomeado como instalador legítimo para evitar suspeitas.       | Monitorar execução de binários não assinados em pastas temporárias. |
+| T1001 | Data Obfuscation                | O tráfego de rede da aplicação foi codificado para evitar detecção.           | Inspecionar pacotes com DPI e análise comportamental.               |
+| T1105 | Ingress Tool Transfer           | O binário ofuscado foi transferido via ferramentas nativas como certutil.     | Bloquear uso de ferramentas administrativas por usuários comuns.    |
+| T1202 | Indirect Command Execution      | A execução do binário foi feita por meio de scripts para evitar logs diretos. | Auditar comandos em scripts e bloquear encadeamentos suspeitos.     |

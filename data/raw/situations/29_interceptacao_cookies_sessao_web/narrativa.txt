@@ -1,0 +1,3 @@
+Durante a navegação em um ambiente corporativo com sessão HTTPS ativa, o atacante explorou uma extensão de navegador vulnerável instalada em um usuário com privilégios comuns. A extensão maliciosa interceptava requisições e capturava cookies de sessão válidos, que eram automaticamente enviados para um servidor remoto controlado pelo atacante.
+
+Em posse dos cookies, o invasor os injetou em uma nova sessão de navegador, utilizando a técnica de session hijacking para acessar o painel administrativo da aplicação web como se fosse o usuário legítimo, sem necessidade de autenticação.

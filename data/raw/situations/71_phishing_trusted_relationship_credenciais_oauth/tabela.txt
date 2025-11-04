@@ -1,0 +1,12 @@
+| ID    | Nome                           | Descrição                                                     | Correção                                                |
+| ----- | ------------------------------ | ------------------------------------------------------------- | ------------------------------------------------------- |
+| T1199 | Trusted Relationship           | Abuso de confiança entre domínios e contas externas.          | Implementar políticas de consentimento de app restrito. |
+| T1566 | Phishing                       | E-mails com links legítimos utilizados para enganar usuários. | Ativar MFA e validação de remetentes.                   |
+| T1528 | Steal Application Access Token | Roubo de token OAuth para acesso a serviços em nuvem.         | Revogar tokens suspeitos e usar rotatividade curta.     |
+| T1659 | Content Injection              | Página hospedada injetava script malicioso.                   | Inspecionar conteúdo de sites integrados a SaaS.        |
+| T1553 | Subvert Trust Controls         | Token assinado legitimamente usado de forma maliciosa.        | Implementar escopo mínimo e consentimento explícito.    |
+| T1087 | Account Discovery              | Coleta de informações sobre usuários e permissões.            | Limitar privilégios de leitura a usuários autenticados. |
+| T1530 | Data from Cloud Storage        | Extração de dados de OneDrive.                                | Monitorar logs de download massivo.                     |
+| T1041 | Exfiltration Over C2 Channel   | Dados exfiltrados via API Graph da Microsoft.                 | Limitar chamadas suspeitas via API.                     |
+| T1078 | Valid Accounts                 | Reuso de tokens legítimos como credenciais válidas.           | Monitorar uso de tokens em dispositivos desconhecidos.  |
+| T1654 | Log Enumeration                | Tokens identificados em logs de auditoria internos.           | Sanitizar logs para evitar exposição de chaves.         |

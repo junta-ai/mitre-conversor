@@ -1,0 +1,13 @@
+Durante o teste, foi identificado um ponto de acesso Wi-Fi corporativo com SSID público, configurado sem isolamento entre clientes. Utilizando uma placa de rede compatível com modo monitor, iniciou-se a captura de pacotes com o comando airodump-ng wlan0mon --essid EmpresaCorp, o que permitiu coletar handshakes WPA2.
+
+A partir disso, foi realizada a quebra da senha utilizando a ferramenta hashcat, com o comando hashcat -m 2500 captura.hccapx rockyou.txt. A senha do Wi-Fi foi obtida, possibilitando a conexão direta à rede interna da empresa e caracterizando acesso inicial ao ambiente.
+
+Uma vez conectado, o analista executou comandos via Windows Management Instrumentation (WMI) para coletar informações e testar o alcance de execução remota, utilizando o comando wmic /node:hostcorp process call create "cmd.exe /c whoami". O teste confirmou a possibilidade de execução de comandos remotos através de WMI.
+
+Durante a enumeração de rede, foram utilizados Responder e Wireshark para interceptar requisições LLMNR e NBNS, capturando credenciais NTLMv2 de usuários válidos. O Responder foi executado com responder -I eth0 -wrf, e posteriormente o hash obtido foi quebrado com sucesso.
+
+Com as credenciais válidas obtidas, foi utilizada a ferramenta Mimikatz para extrair senhas armazenadas localmente na estação comprometida, através do comando privilege::debug seguido de sekurlsa::logonpasswords. Diversas credenciais de usuários internos foram expostas.
+
+Na fase de reconhecimento interno, foi feito sniffing de pacotes dentro da rede corporativa, novamente com Wireshark, para observar comunicações entre sistemas internos e identificar servidores críticos que transmitiam dados sensíveis em texto claro.
+
+Por fim, o atacante acessou um servidor de banco de dados com privilégios administrativos e manipulou registros armazenados, alterando valores de transações financeiras como parte da simulação de impacto operacional.

@@ -1,0 +1,29 @@
+Durante a simulação, foi identificado um painel de administração exposto publicamente de uma aplicação desenvolvida com framework Node.js, hospedada em ambiente AWS Elastic Beanstalk, acessível pela URL admin.ecommerce-cloud.com.
+
+Ao realizar uma análise com ferramentas de enumeração de subdomínios, como subfinder e amass, observou-se o subdomínio citado que não possuía autenticação em seu endpoint /api/status, o qual retornava metadados da aplicação e informações da instância EC2.
+
+Utilizando a técnica de Active Scanning, com auxílio da ferramenta wfuzz, foi possível descobrir endpoints não documentados. O comando utilizado foi:
+
+wfuzz -c -w wordlists/endpoints.txt -u https://admin.ecommerce-cloud.com/FUZZ
+
+Esse processo revelou o endpoint /debug/logs, que expunha arquivos de log contendo tokens de API (alguns ainda ativos). Um desses tokens permitia autenticação em uma API privada, acessível apenas internamente.
+
+Com o token, foram realizados testes nos headers de autenticação da API, confirmando acesso autorizado. A partir daí, foi identificado que a aplicação estava conectada diretamente a um bucket S3, contendo arquivos de ambiente .env com variáveis sensíveis, entre elas AWS_ACCESS_KEY_ID e AWS_SECRET_ACCESS_KEY.
+
+Com essas credenciais, foi instalado o AWS CLI localmente e realizados comandos como:
+
+aws s3 ls
+aws iam list-users
+aws ec2 describe-instances
+
+Esses comandos permitiram listar serviços e usuários ativos, além de acessar um bucket contendo scripts de infraestrutura como código (IaC), onde encontrava-se um arquivo de configuração Terraform com o nome da role administrativa e uma URL para obtenção temporária de tokens via STS.
+
+Em paralelo, o atacante implantou um agente C2 com Sliver Framework, e utilizou ngrok para expor localmente um listener sem expor o IP real, camuflando a origem do ataque. O comando de ngrok utilizado foi:
+
+ngrok tcp 8443
+
+O agente C2 foi configurado para realizar protocol tunneling utilizando ICMP como canal de comunicação. Isso permitiu manter acesso persistente ao ambiente sem chamar atenção em inspeções de rede tradicionais.
+
+Posteriormente, com as permissões herdadas, foi possível utilizar funções da Lambda para injetar código remoto. Alterando a role atribuída à Lambda (com privilégios administrativos), o atacante conseguiu executar comandos arbitrários e modificar políticas globais da organização.
+
+Ao final, foi possível adicionar o atacante como usuário administrador da conta cloud, configurar um novo MFA e revogar sessões ativas de outros administradores legítimos.

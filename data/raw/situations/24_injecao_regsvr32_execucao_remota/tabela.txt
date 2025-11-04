@@ -1,0 +1,6 @@
+| ID    | Nome                          | Descrição                                                                              | Correção                                                                                       |
+| ----- | ----------------------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| T1218 | Signed Binary Proxy Execution | O atacante utilizou regsvr32.exe para carregar código malicioso a partir de uma DLL.   | Monitorar o uso de regsvr32 e bloquear execuções não autorizadas por regras de AppLocker.      |
+| T1055 | Process Injection             | A DLL maliciosa injetava código no processo para execução invisível.                   | Aplicar EDR com detecção baseada em comportamento e monitoramento de chamadas à API Windows.   |
+| T1105 | Ingress Tool Transfer         | A DLL foi transferida silenciosamente para o host antes da execução.                   | Bloquear transferência de arquivos desconhecidos e inspecionar uploads com antivírus de borda. |
+| T1562 | Impair Defenses               | A técnica contornou sistemas antivírus ao usar binário confiável para executar código. | Implementar whitelisting restritivo e monitorar execução de binários nativos do Windows.       |

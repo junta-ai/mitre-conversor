@@ -1,0 +1,17 @@
+Durante o teste de segurança, foi realizada uma análise dos cabeçalhos HTTP de resposta da aplicação https://loja.segura.com. Utilizou-se a ferramenta shcheck.py para inspecionar a presença de controles básicos de segurança na comunicação HTTP.
+
+Observou-se a ausência de diversos cabeçalhos importantes, como:
+
+Strict-Transport-Security
+
+X-Content-Type-Options
+
+X-Frame-Options
+
+Content-Security-Policy
+
+A seguir, o comando utilizado para realizar a análise:
+
+python3 shcheck.py https://loja.segura.com
+
+A ausência desses cabeçalhos expõe os usuários a riscos como clickjacking, mime sniffing, downgrade de conexão HTTPS e ataques de inclusão de conteúdo malicioso em navegadores.

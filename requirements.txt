@@ -1,0 +1,22 @@
+# Web scraping
+playwright
+
+# API Framework
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-multipart
+
+# Machine Learning & NLP
+sentence-transformers
+transformers
+torch
+
+# Vector Database
+faiss-cpu
+numpy
+
+# Utilities
+python-dotenv
+requests

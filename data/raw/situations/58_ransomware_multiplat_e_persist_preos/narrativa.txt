@@ -1,0 +1,7 @@
+Durante a intrusão em uma rede corporativa, o atacante comprometeu o servidor de domínio via exploração SMB e obteve acesso de administrador local.
+Utilizando o utilitário psexec, executou um binário intitulado update_win32.exe em múltiplos hosts, o qual continha um dropper que instalava um bootkit no MBR, garantindo persistência Pre-OS Boot.
+
+O ransomware executava Process Hollowing para ocultar sua execução em processos svchost.exe e desativava o Windows Defender com Set-MpPreference -DisableRealtimeMonitoring $true.
+Após criptografar arquivos com AES-256, o malware transmitia chaves e logs para um servidor C2 em https://cdn-dropboxapi[.]net/upload.
+
+Por fim, executava shutdown /r /f /t 0, forçando reboot dos sistemas afetados e completando o impacto.

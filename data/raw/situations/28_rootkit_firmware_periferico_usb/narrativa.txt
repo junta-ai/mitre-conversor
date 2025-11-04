@@ -1,0 +1,3 @@
+O atacante teve acesso físico a um computador e substituiu o mouse USB padrão por um periférico adulterado, cujo firmware havia sido reprogramado para executar comandos automaticamente ao ser conectado.
+
+O dispositivo simulava uma interface de teclado (HID) e injetava comandos PowerShell invisíveis ao usuário, conectando-se a um servidor remoto e implantando uma backdoor persistente. Por estar embutido no firmware do dispositivo, o código malicioso não era detectado por antivírus tradicionais e persistia mesmo após reformatar o sistema operacional.

@@ -1,0 +1,15 @@
+Durante o teste, foi configurado um ambiente ofensivo utilizando Kali Linux em uma rede isolada da empresa alvo. O objetivo era avaliar a resiliência dos controles de segurança contra técnicas de evasão em sistemas Windows.
+
+Inicialmente, o atacante utilizou mascaramento de binários com a ferramenta Veil-Evasion, gerando um payload executável ofuscado que evitava a detecção por antivírus. Esse payload foi compilado com técnicas de software packing, dificultando a análise estática e impedindo que o executável fosse marcado como suspeito por engines tradicionais.
+
+O binário foi entregue por meio de phishing com anexo de documento malicioso, contendo uma macro embarcada com execução retardada por tempo e interação do usuário, técnica típica de execution guardrails. A macro só era ativada após 30 segundos e clicando em “Ativar Conteúdo”.
+
+Durante a execução, o payload utilizava regsvr32.exe para carregar bibliotecas maliciosas de forma nativa, aproveitando o proxy binário do Windows para burlar políticas de execução. Também foram aplicadas técnicas de impair defenses, onde o agente implantado desabilitava o Windows Defender com o comando:
+
+Set-MpPreference -DisableRealtimeMonitoring $true
+
+Para manter o acesso, foi criada uma entrada de inicialização no registro (Registry Run Key), garantindo persistência após reinicializações.
+
+Durante o reconhecimento de máquina, foi utilizada a ferramenta PowerView, e foram identificados arquivos com credenciais não seguras armazenadas em arquivos .txt no Desktop do usuário “helpdesk”. As credenciais foram usadas posteriormente para movimentação lateral utilizando Remote Desktop Protocol (RDP).
+
+Para extrair dados sem levantar alertas, foi aplicada a técnica de data staging, onde os arquivos capturados foram comprimidos em .zip com senha e armazenados temporariamente na pasta %APPDATA%, aguardando envio posterior.

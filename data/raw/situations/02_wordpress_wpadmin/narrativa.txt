@@ -1,0 +1,7 @@
+Durante o teste, foi identificada uma aplicação WordPress acessível publicamente no endereço https://empresa.com/wp-admin. A exposição desse painel administrativo sem nenhum tipo de bloqueio ou proteção adicional (como autenticação em duas etapas ou filtro de IP) permitiu que o acesso fosse testado diretamente.
+
+Utilizando a funcionalidade /wp-json/wp/v2/users, foi possível descobrir que o nome do administrador do sistema era carlosadmin. Com essa informação em mãos, partiu-se para a tentativa de força bruta com a ferramenta wpscan, utilizando o seguinte comando:
+
+wpscan --url https://empresa.com --passwords rockyou.txt --usernames carlosadmin
+
+A senha foi descoberta com sucesso, permitindo acesso completo ao painel administrativo da aplicação com privilégios elevados.

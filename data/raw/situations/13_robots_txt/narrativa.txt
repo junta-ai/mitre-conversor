@@ -1,0 +1,15 @@
+Durante o reconhecimento passivo, foi identificada a existência do arquivo robots.txt acessível publicamente na aplicação https://loja.segura.com/robots.txt.
+
+O conteúdo do arquivo listava diretórios sensíveis, os quais poderiam revelar caminhos internos e auxiliar atacantes no mapeamento da aplicação. Dentre os diretórios listados estavam:
+
+/admin-panel/
+
+/backup/
+
+/private/
+
+A seguir, o comando utilizado para acessar o conteúdo:
+
+curl -s https://loja.segura.com/robots.txt
+
+A exposição desse arquivo com diretórios ocultos facilitou a etapa de descoberta e levantamento de superfícies de ataque, podendo ser explorado futuramente em tentativas de acesso indevido ou brute force.

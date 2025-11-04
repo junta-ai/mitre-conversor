@@ -1,0 +1,3 @@
+Durante o teste, o adversário implantou ações que interromperam serviços críticos em vários hosts, causando indisponibilidade parcial de aplicações internas. A sequência incluiu tentativas de parada de serviços via utilitários nativos e manipulação de controladores de serviço.
+
+Logs do sistema e alertas de disponibilidade (Nagios/Prometheus) foram os principais sinais que levaram à identificação dos eventos; a análise mostrou comandos de parada acionados por contas com permissões elevadas cujas credenciais haviam sido comprometidas. A mitigação imediata envolveu isolar processos afetados e reiniciar serviços a partir de imagens conhecidas.

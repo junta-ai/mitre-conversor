@@ -1,0 +1,7 @@
+| ID    | Nome                            | Descrição                                                                       | Correção                                                                           |
+| ----- | ------------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| T1543 | Create or Modify System Process | O atacante alterou o caminho de execução de um serviço existente.               | Monitorar alterações em serviços com `sc` e aplicar proteção em binários críticos. |
+| T1053 | Scheduled Task/Job              | A execução recorrente foi obtida com base no agendamento do serviço original.   | Auditar políticas de execução automática e revisar agendamentos existentes.        |
+| T1055 | Process Injection               | O novo binário injetava código em processos legítimos para ocultação.           | Implementar verificação de integridade em binários de serviços.                    |
+| T1564 | Hide Artifacts                  | A persistência foi estabelecida sem novos arquivos, dificultando detecção.      | Aplicar monitoramento contínuo de serviços e alertas por IOC.                      |
+| T1078 | Valid Accounts                  | O atacante aproveitou permissões legítimas do serviço para escalar privilégios. | Usar contas de serviço com privilégios mínimos e auditoria contínua.               |

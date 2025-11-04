@@ -1,0 +1,3 @@
+Durante um acesso físico rápido ao ambiente da vítima, o atacante conectou um teclado aparentemente inofensivo com um módulo de espionagem USB embutido. O dispositivo incluía um chip que simulava uma interface de teclado HID, mas que, em segundo plano, armazenava todas as teclas digitadas localmente.
+
+Após capturar dados sensíveis como senhas, logins e comandos administrativos, o atacante retornou ao local e extraiu os dados do hardware via conexão serial protegida. O ataque não gerou alertas no sistema operacional, pois o periférico foi reconhecido como um teclado legítimo.

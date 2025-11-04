@@ -1,0 +1,3 @@
+Durante o teste, o adversário conduziu atividades de descoberta extensiva em endpoints para mapear a presença de software de defesa, periféricos conectados e janelas de aplicações críticas. Esse mapeamento permitiu ao atacante identificar pontos fracos em estações de trabalho que possuíam acesso a sistemas sensíveis.
+
+Ferramentas como WMI, PowerShell e agentes de inventário foram usadas para coletar informações sobre dispositivos conectados, processos em execução e janelas ativas, permitindo priorizar alvos para exfiltração e persistência. A equipe correlacionou dados de gestão (SCCM) com registros locais para determinar quais hosts exigiam ações imediatas de contenção.

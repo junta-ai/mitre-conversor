@@ -1,0 +1,12 @@
+| ID    | Nome                              | Descrição                                                                | Correção                                                              |
+| ----- | --------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| T1034 | Path Interception                 | Execução de binário falso via alteração da variável PATH                 | Usar caminhos absolutos em scripts administrativos                    |
+| T1009 | Binary Padding                    | Camuflagem de binário com preenchimento para evitar detecção por tamanho | Verificar hash e assinaturas digitais                                 |
+| T1053 | Scheduled Task/Job                | Criação de cronjob para persistência                                     | Monitorar alterações em arquivos de cron                              |
+| T1003 | OS Credential Dumping             | Dump de credenciais após acesso root                                     | Utilizar hardening de kernel e alertas de acesso a arquivos sensíveis |
+| T1064 | Scripting                         | Uso de scripts shell para persistência                                   | Validar conteúdos de scripts antes da execução automática             |
+| T1100 | Web Shell                         | Upload de shell em ambiente web                                          | Monitorar uploads e bloquear extensões suspeitas                      |
+| T1222 | File and Directory Permissions    | Alteração de permissões para garantir persistência                       | Aplicar permissões mínimas e usar audit trail                         |
+| T1140 | Deobfuscate/Decode Files          | Decodificação de scripts maliciosos                                      | Implementar EDR com suporte a análise de payloads encodados           |
+| T1134 | Access Token Manipulation         | Manipulação de token para simular contexto de outro usuário              | Monitorar alterações de contexto de usuário no sistema operacional    |
+| T1059 | Command and Scripting Interpreter | Uso de bash para executar código malicioso                               | Monitoramento de execução com parâmetros suspeitos                    |

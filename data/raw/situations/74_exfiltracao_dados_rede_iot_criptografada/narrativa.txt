@@ -1,0 +1,4 @@
+Em um ambiente de automação industrial (IoT), o atacante explorou um gateway MQTT exposto sem autenticação robusta. Após acesso, foi implantado um módulo Python que interceptava dados de sensores e controladores industriais.
+O código codificava os dados em base64 e os enviava criptografados para um endpoint HTTPS remoto, disfarçando-se de tráfego legítimo da aplicação.
+
+O ataque ainda manipulava configurações de firmware dos dispositivos para redirecionar logs e impedir auditoria. Além disso, o atacante aproveitou falhas em autenticação mútua para injetar certificados falsos e estabelecer um canal persistente de exfiltração.

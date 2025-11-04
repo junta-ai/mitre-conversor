@@ -1,0 +1,9 @@
+Durante o teste, um processo de descoberta intenso foi realizado logo após a aquisição inicial de uma conta com privilégios limitados. O atacante procurou por informações sobre a rede, políticas de senha e conexões ativas para planejar escalonamentos e movimentos laterais.
+
+As informações coletadas incluíam listas de conexões de rede, dispositivos remotos acessíveis, e detalhes de políticas que regiam a força e expiração de senhas. Com esse mapeamento, o agente focou em pontos com maior probabilidade de conter contas com permissões elevadas ou capacidades de delegação de credenciais.
+
+Em seguida, técnicas de escalonamento e manipulação de contas foram empregadas para alterar atributos que permitiram a criação de novas contas administrativas e a elevação de privilégios de contas existentes. Parte da manipulação envolveu alterar scripts de inicialização e jobs locais para garantir que a elevação persistisse após reinicializações.
+
+Com contas mais privilegiadas, o atacante executou movimentos laterais mais amplos, acessando serviços antes inacessíveis e extraindo credenciais e tokens que permitiram delegação adicional. A presença de políticas de senha fracas e contas com permissões desnecessárias acelerou essa progressão.
+
+Como ação corretiva, foram aplicadas mudanças de políticas de senha, remoção de privilégios desnecessários, auditoria em profundidade das contas criadas e revisão de scripts de inicialização e jobs locais para bloquear vetores de reinfestação.

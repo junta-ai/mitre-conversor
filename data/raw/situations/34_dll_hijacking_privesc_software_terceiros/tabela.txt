@@ -1,0 +1,5 @@
+| ID    | Nome                              | Descrição                                                                                | Correção                                                                                |
+| ----- | --------------------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| T1574 | Hijack Execution Flow             | O atacante manipulou a forma como a aplicação carregava bibliotecas para injetar código. | Aplicar assinatura digital e validação de integridade em bibliotecas carregadas.        |
+| T1055 | Process Injection                 | O código da DLL foi executado no processo legítimo, dificultando a detecção.             | Monitorar chamadas de API suspeitas e ações inesperadas em processos conhecidos.        |
+| T1548 | Abuse Elevation Control Mechanism | A aplicação com privilégios administrativos executou a DLL maliciosa.                    | Restringir permissões de software de terceiros e auditar acessos de conta privilegiada. |

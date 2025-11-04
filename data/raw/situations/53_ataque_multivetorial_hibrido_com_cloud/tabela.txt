@@ -1,0 +1,12 @@
+| ID        | Nome                                  | Descrição                                                                       | Correção                                                                 |
+| --------- | ------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| T1596     | Search Open Sources                   | Atacante mapeou subdomínios e APIs públicas para preparar fases futuras.        | Monitorar DNS dinâmico, usar serviços de gestão de superfície de ataque. |
+| T1587     | Develop Capabilities                  | Desenvolvimento de payload multiplataforma com evasão nativa.                   | Verificar assinaturas digitais e segmentar execução de binários.         |
+| T1566.002 | Spearphishing via Service             | Link malicioso enviado por canal de chat legítimo de empresa parceira.          | Validar origem de mensagens mesmo em canais conhecidos.                  |
+| T1218.005 | Mshta                                 | Payload executado por meio do host de aplicação HTML via protocolo externo.     | Bloquear execução de mshta.exe e monitorar conexões de saída incomuns.   |
+| T1547.011 | Plist Modification                    | Persistência adicionada no macOS com script de inicialização disfarçado.        | Monitorar alterações em LaunchAgents e LaunchDaemons.                    |
+| T1058     | Service Registry Permissions Weakness | Escalada de privilégio via modificação de binário de serviço mal protegido.     | Aplicar ACLs restritivas nas chaves de serviço do Registro.              |
+| T1055.012 | Process Hollowing                     | Injeção do binário malicioso em processo do sistema para camuflagem.            | Monitorar injeções de memória e comportamento de processos.              |
+| T1021.003 | Component Object Model and DCOM       | Execução remota de payloads usando serviços DCOM em hosts vulneráveis.          | Restringir uso de DCOM e aplicar hardening nos endpoints.                |
+| T1102.003 | Web Service (C2)                      | Canal de comando e controle via chamadas ofuscadas à AWS API Gateway.           | Inspecionar headers de API e padrões incomuns de uso da cloud.           |
+| T1567.002 | Exfiltration Over Web Service         | Dados sensíveis exfiltrados como uploads legítimos a serviços em nuvem pública. | Monitorar comportamento anômalo de upload e uso de APIs de terceiros.    |

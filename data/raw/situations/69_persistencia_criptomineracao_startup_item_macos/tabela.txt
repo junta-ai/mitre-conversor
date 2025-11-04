@@ -1,0 +1,12 @@
+| ID    | Nome                             | Descrição                                                                | Correção                                                   |
+| ----- | -------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| T1165 | Startup Items                    | Persistência configurada por meio de item de inicialização no macOS.     | Monitorar LaunchAgents e aplicar whitelisting.             |
+| T1180 | Screensaver                      | O malware se ocultava por trás de um processo de aparência legítima.     | Monitorar processos ativos e nomes inconsistentes.         |
+| T1143 | Hidden Window                    | Execução oculta para minerar criptomoedas sem alerta do usuário.         | Inspecionar processos sem interface gráfica.               |
+| T1006 | Direct Volume Access             | Escrita direta em partições para contornar restrições de sistema.        | Restringir volume access por perfil de usuário.            |
+| T1140 | Deobfuscate/Decode Files         | Script ofuscado em JavaScript decodificado em tempo de execução.         | Bloquear scripts com fontes externas em navegadores.       |
+| T1107 | File Deletion                    | Logs de uso de CPU e erros eram excluídos automaticamente.               | Reforçar controle de integridade em diretórios de log.     |
+| T1211 | Exploitation for Defense Evasion | Exploração do AppleScript para execução silenciosa.                      | Bloquear execução automática de scripts por padrão.        |
+| T1053 | Scheduled Task/Job               | Execução regular a cada inicialização do sistema.                        | Auditar criação de tarefas por usuários não privilegiados. |
+| T1496 | Resource Hijacking               | Consumo excessivo de CPU e energia do sistema comprometido.              | Detectar anomalias de uso de recursos com agentes locais.  |
+| T1653 | Power Settings                   | Configurações de energia alteradas para manter CPU ativa constantemente. | Restringir alterações de energia a perfis administrativos. |

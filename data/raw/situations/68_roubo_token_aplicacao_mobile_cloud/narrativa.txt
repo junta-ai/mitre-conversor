@@ -1,0 +1,5 @@
+Em um ataque voltado a usuários de uma aplicação mobile bancária, o invasor interceptou pacotes HTTPs ofuscados usando um proxy TLS personalizado. O atacante conseguiu capturar tokens de acesso à API de backend e obteve dados sensíveis.
+
+Esses tokens estavam armazenados localmente no aplicativo e eram reutilizados sem proteção de expiração ou verificação de fingerprint. O atacante decodificou os JWTs obtidos, ganhando acesso direto à conta do usuário.
+
+Em paralelo, foram explorados serviços em nuvem para replicar chamadas à API da aplicação. Utilizando scripts em Python e simulação de requests móveis, o invasor movimentou fundos e coletou registros internos da conta.

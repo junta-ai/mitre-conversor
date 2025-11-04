@@ -1,0 +1,12 @@
+| ID    | Nome                                       | Descrição                                                  | Correção                                           |
+| ----- | ------------------------------------------ | ---------------------------------------------------------- | -------------------------------------------------- |
+| T1175 | Component Object Model and Distributed COM | Execução remota via DCOM.                                  | Restringir RPC e autenticação NTLM.                |
+| T1117 | Regsvr32                                   | Injeção de DLL com regsvr32.                               | Bloquear uso de regsvr32 sem assinatura válida.    |
+| T1559 | Inter-Process Communication                | Comunicação entre processos remotos para injeção.          | Monitorar chamadas de DCOM e RPC.                  |
+| T1031 | Modify Existing Service                    | Serviço modificado para carregar DLL.                      | Monitorar alterações em binários de serviço.       |
+| T1042 | Change Default File Association            | Persistência alterando associações de extensão.            | Validar registro de extensões críticas.            |
+| T1168 | Local Job Scheduling                       | Tarefa agendada usada para execução periódica.             | Revisar agendamentos não autorizados.              |
+| T1202 | Indirect Command Execution                 | Execução indireta via processo intermediário.              | Correlacionar logs de spawn de processos.          |
+| T1087 | Account Discovery                          | Identificação de máquinas com privilégios administrativos. | Segmentar contas por host.                         |
+| T1021 | Remote Services                            | Execução remota sem interação de usuário.                  | Aplicar firewall interno e MFA para acesso remoto. |
+| T1211 | Exploitation for Defense Evasion           | Exploração de permissões DCOM sem alertas.                 | Monitorar anomalias em RPC.                        |

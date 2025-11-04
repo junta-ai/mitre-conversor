@@ -1,0 +1,3 @@
+Durante o teste, foi detectado um esquema que objetivava desviar transações e alterar configurações de faturamento: o atacante obteve credenciais de serviços financeiros e realizou movimentos que poderiam redirecionar fundos ou alterar destinos de pagamento. A ação foi cuidadosamente encoberta por logs de transações aparentemente legítimas.
+
+A equipe de resposta identificou padrões estranhos em transferências e reconciliações; integração com sistemas de ERP e logs de gateways de pagamento foram essenciais para reconstituir as alterações e mitigar perdas potenciais. A mitigação incluiu isolamento de contas de serviço e revisão de históricos de autorização.

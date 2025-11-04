@@ -1,0 +1,9 @@
+Durante o teste, um ambiente virtualizado apresentado para administração central revelou sinais de manipulação em componentes relacionados à impressão e monitoração de portas, ou seja, módulos auxiliares que atrelam dispositivos físicos ao sistema. Essas alterações ocorreram em hosts que também hospedavam imagens virtuais de produção, o que elevou o risco de contaminação em escala.
+
+A análise técnica mostrou que o adversário aproveitou métodos para persistir tanto no hypervisor quanto em camadas de gerenciamento de dispositivos: foram implantados artefatos capazes de intermediar tráfego entre dispositivos e sistemas, possibilitando a execução de código em contexto privilegiado sempre que um recurso físico era acessado.
+
+Além disso, houve implantação de uma imagem interna modificada que substituía componentes críticos das VMs ao nível do hypervisor, de modo que instâncias recém-inicializadas já traziam a carga maliciosa embutida. Esse mecanismo dificultou a limpeza por simples reinstalação das VMs afetadas, exigindo reprovisionamento completo do hypervisor.
+
+O atacante também modificou pacotes de autenticação e hooks de login, criando um ponto de reentrada que persistia mesmo após rotinas padrão de recuperação. Esses artefatos não eram facilmente visíveis via consoles de administração convencionais, e exigiram inspeção forense aprofundada de metadados de imagem e logs do hypervisor.
+
+A recuperação demandou isolar o ambiente de virtualização, importar imagens limpas e auditar assinaturas/artefatos de boot. A recomendação foi reforçar controles de integridade de imagens, aplicar whitelisting de drivers e impedir gravação não autorizada em componentes que expõem dispositivos físicos ao sistema.

@@ -1,0 +1,12 @@
+| ID    | Nome                             | Descrição                                                   | Correção                                                           |
+| ----- | -------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
+| T1157 | Dylib Hijacking                  | Substituição de biblioteca legítima por DLL maliciosa.      | Bloquear gravação em diretórios de sistema e validar assinaturas.  |
+| T1044 | File System Permissions Weakness | Permissões incorretas permitiram gravação indevida.         | Corrigir ACLs e revisar políticas de permissão em pastas críticas. |
+| T1152 | Launchctl                        | Execução de agentes maliciosos via Launchctl.               | Restringir uso de LaunchAgents e LaunchDaemons.                    |
+| T1163 | Rc.common                        | Persistência através de script de inicialização do sistema. | Validar integridade de scripts no boot.                            |
+| T1169 | Sudo                             | Escalada por cache de sudo sem senha.                       | Reduzir tempo de cache e exigir autenticação completa.             |
+| T1102 | Web Service                      | Comunicação periódica com servidor C2 via HTTP.             | Bloquear tráfego suspeito e filtrar domínios desconhecidos.        |
+| T1027 | Obfuscated Files or Information  | Binário ofuscado para dificultar engenharia reversa.        | Implementar análise estática e monitoramento.                      |
+| T1497 | Virtualization/Sandbox Evasion   | Binário detectava VMs antes de execução plena.              | Reforçar segurança de análise e sandbox.                           |
+| T1003 | OS Credential Dumping            | Extração de credenciais sudo cacheadas.                     | Monitorar logs de sudo e sessões anômalas.                         |
+| T1105 | Ingress Tool Transfer            | Transferência de payloads auxiliares via curl.              | Bloquear downloads externos por processos não autorizados.         |

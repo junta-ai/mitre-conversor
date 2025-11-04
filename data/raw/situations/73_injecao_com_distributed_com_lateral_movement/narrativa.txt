@@ -1,0 +1,3 @@
+O atacante, após comprometer uma máquina Windows interna, iniciou movimento lateral por meio de Distributed COM (DCOM), explorando permissões de RPC entre hosts no mesmo domínio. Utilizou scripts PowerShell para carregar uma DLL maliciosa via regsvr32 e executá-la remotamente em outro host, sem autenticação interativa.
+
+Esse processo permitiu injeção de código em serviços legítimos, sem gerar alertas diretos no antivírus. A persistência foi garantida modificando associações de arquivos e adicionando chaves de inicialização. O atacante também executou tarefas agendadas locais para manter execução automatizada em múltiplas máquinas.

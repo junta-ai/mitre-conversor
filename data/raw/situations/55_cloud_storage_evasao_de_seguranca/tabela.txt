@@ -1,0 +1,12 @@
+| ID    | Nome                            | Descrição                                                             | Correção                                                               |
+| ----- | ------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| T1566 | Spearphishing via Service       | Campanha de phishing entregue via canal corporativo.                  | Implementar MFA e políticas de filtragem de links externos.            |
+| T1218 | Mshta                           | Execução remota de código via host HTML.                              | Bloquear execução de mshta.exe em endpoints corporativos.              |
+| T1116 | Code Signing                    | Binário falso assinado com certificado forjado.                       | Validar cadeias de confiança e bloquear certificados não reconhecidos. |
+| T1112 | Modify Registry                 | Entrada de registro utilizada para persistência automática.           | Monitorar alterações suspeitas no Registro.                            |
+| T1053 | Scheduled Task/Job              | Persistência por meio de agendamento automático no logon.             | Auditar tarefas agendadas e origem dos binários associados.            |
+| T1089 | Disabling Security Tools        | Antivírus desativado antes da execução do payload.                    | Restringir privilégios administrativos e logs de eventos.              |
+| T1099 | Timestomp                       | Alteração de timestamps para mascarar criação de arquivos maliciosos. | Usar EDR com integridade temporal de arquivos.                         |
+| T1003 | OS Credential Dumping           | Extração de credenciais locais com Mimikatz.                          | Bloquear execução de Mimikatz e desativar LSASS de acesso direto.      |
+| T1102 | Web Service                     | Exfiltração via APIs legítimas de cloud (AWS).                        | Monitorar uso anômalo de APIs em contas de serviço.                    |
+| T1027 | Obfuscated Files or Information | Script VBA ofuscado para evitar detecção inicial.                     | Filtrar macros e inspecionar documentos recebidos.                     |

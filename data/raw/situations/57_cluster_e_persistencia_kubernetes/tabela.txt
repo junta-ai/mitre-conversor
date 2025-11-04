@@ -1,0 +1,12 @@
+| ID    | Nome                             | Descrição                                              | Correção                                             |
+| ----- | -------------------------------- | ------------------------------------------------------ | ---------------------------------------------------- |
+| T1613 | Container and Resource Discovery | Enumeração de pods e containers em cluster Kubernetes. | Restringir privilégios de leitura no Kubernetes API. |
+| T1619 | Cloud Storage Object Discovery   | Credenciais AWS expostas em variáveis de ambiente.     | Evitar secrets embutidos e usar IAM Roles.           |
+| T1547 | Event Triggered Execution        | ConfigMap usado como gatilho para execução automática. | Restringir uso de ConfigMaps e validar integridade.  |
+| T1562 | Indicator Removal                | Logs apagados para evadir detecção.                    | Habilitar auditoria imutável no cluster.             |
+| T1102 | Web Service                      | C2 via WebSocket sobre HTTPS.                          | Monitorar anomalias de tráfego HTTPS.                |
+| T1527 | Application Access Token         | Uso de token cloud obtido no container.                | Rotacionar credenciais periodicamente.               |
+| T1072 | Software Deployment Tools        | Kubernetes utilizado para propagar payloads.           | Restringir acesso administrativo a DevOps.           |
+| T1099 | Timestomp                        | Alteração de metadados de logs.                        | Verificar integridade temporal em logs.              |
+| T1027 | Obfuscated Files or Information  | Payloads foram comprimidos e cifrados em Base64.       | Monitorar transferências de dados cifrados.          |
+| T1537 | Transfer Data to Cloud Account   | Exfiltração para bucket controlado externamente.       | Aplicar política de acesso condicional em buckets.   |

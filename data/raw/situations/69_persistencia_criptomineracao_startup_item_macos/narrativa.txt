@@ -1,0 +1,5 @@
+Em um endpoint macOS exposto em laboratório de testes, o atacante comprometeu o sistema por meio de execução de script JavaScript dentro de uma página HTML enviada por phishing. O script abusava do AppleScript para automatizar a instalação de um binário de mineração de criptomoeda.
+
+Após o download, o malware era movido para o diretório ~/Library/LaunchAgents/ e registrado como um processo legítimo. O nome do processo imitava um utilitário da Apple, dificultando a identificação. O binário era iniciado via item de inicialização no boot do sistema.
+
+A execução ocorria em segundo plano, com janela oculta, e explorava o máximo da CPU. Além disso, arquivos de log do processo eram automaticamente excluídos após cada ciclo de execução.

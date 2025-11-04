@@ -1,0 +1,9 @@
+Durante o teste, uma aplicação cliente utilizada por analistas mostrou comportamento anômalo durante sessões de uso intensivo. O ambiente era composto por estações de trabalho gerenciadas e servidores centrais de autenticação; o incidente foi identificado inicialmente por alertas de integridade do desktop que sinalizaram modificações em componentes de interface do usuário.
+
+A investigação revelou que o invasor havia inserido um componente que se integrava à interface gráfica da aplicação, alterando fluxos de entrada e capturando interações em momentos específicos. Esse componente foi projetado para ficar oculto do utilizador final, reagindo apenas quando determinados menus ou janelas eram acessadas, o que atrasou a sua descoberta.
+
+Foi identificado também um mecanismo “armadilha” que deixava artefatos passíveis de serem ativados apenas quando um operador tentava realizar ações forenses ou atualizar o software — a intenção era complicar a análise e provocar a reexecução de cargas maliciosas. Esse comportamento seletivo reduziu a visibilidade em verificações automatizadas e exigiu análise manual detalhada da memória das estações.
+
+Para garantir persistência, o atacante instalou controles ao nível de drivers e pontos de integração do sistema que reiniciavam o componente gráfico sempre que removido. Em paralelo, foram observadas modificações em mecanismos de inicialização de processos que permitiam reabertura automática de aplicações com a carga maliciosa injetada.
+
+Como recomendações imediatas, o relatório sugere isolar estações afetadas, coletar memória volátil para análise, revisar assinaturas de componentes gráficos e bloquear instalações de pacotes que não passem por canais verificados de distribuição. Também foi recomendado reforçar a segregação entre ambientes de usuário e de análise forense para evitar gatilhos acidentais.

@@ -1,0 +1,12 @@
+| ID    | Nome                                | Descrição                                                                        | Correção                                                                   |
+| ----- | ----------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| T1528 | Steal Application Access Token      | Tokens de acesso capturados diretamente do tráfego e do armazenamento local.     | Utilizar proteção por certificado e expiração curta para tokens de sessão. |
+| T1503 | Credentials from Web Browsers       | Credenciais encontradas em cache de WebView do app.                              | Bloquear armazenamento de sessão local em apps mobile com WebView.         |
+| T1171 | LLMNR/NBT-NS Poisoning and Relay    | Utilizado para obter tokens de autenticação via proxy em redes públicas.         | Desativar LLMNR/NBNS em redes Wi-Fi públicas e clientes.                   |
+| T1145 | Private Keys                        | APK analisado revelou chaves privadas embutidas.                                 | Armazenar segredos em cofres e usar KMS sempre que possível.               |
+| T1217 | Browser Information Discovery       | Versões e características do navegador mobile foram detectadas via fingerprint.  | Aplicar headers de proteção e ofuscação de fingerprint.                    |
+| T1032 | Standard Cryptographic Protocol     | O tráfego foi interceptado mesmo sendo HTTPS, usando proxy TLS com certificados. | Usar pinning de certificado no cliente.                                    |
+| T1188 | Multi-hop Proxy                     | Proxies em cadeia utilizados para ofuscar origem dos acessos.                    | Monitorar cadeias de proxy e limitar IPs de acesso à API.                  |
+| T1094 | Custom Command and Control Protocol | Comunicação com backend simulava a API do app.                                   | Verificar tokens e user-agents por heurística.                             |
+| T1214 | Credentials in Registry             | Informações de sessão exportadas da emulação da aplicação via Android Emulator.  | Impedir execução do app em dispositivos não verificados.                   |
+| T1654 | Log Enumeration                     | Logs do servidor revelaram tokens ativos ainda válidos e sem rotatividade.       | Rotacionar tokens periodicamente e ativar logging anônimo.                 |

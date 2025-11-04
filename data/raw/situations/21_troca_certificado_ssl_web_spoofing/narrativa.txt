@@ -1,0 +1,5 @@
+Durante a análise de serviços web da empresa, o atacante percebeu que um subdomínio da aplicação web estava configurado com um certificado SSL expirado e sem proteção HSTS. Usando o Let's Encrypt, emitiu um novo certificado para um subdomínio idêntico (login-empresa.com) controlado por ele, explorando a ausência de verificação de origem em requisições feitas pelo navegador.
+
+Através de campanhas de phishing, usuários foram levados a acessar o endereço malicioso com o novo certificado válido, o que impedia alertas HTTPS no navegador. A página hospedava um clone do login legítimo, e todas as credenciais submetidas eram armazenadas localmente antes de redirecionar os usuários ao portal verdadeiro, simulando uma falha de sessão.
+
+Os acessos foram analisados e utilizados para comprometer VPNs internas e sistemas web protegidos por senha simples, uma vez que MFA não era amplamente aplicado.

@@ -1,0 +1,7 @@
+| ID    | Nome                              | Descrição                                                                           | Correção                                                                     |
+| ----- | --------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| T1566 | Phishing                          | O atacante enviou e-mail com link malicioso hospedado em serviço legítimo de nuvem. | Implementar filtros de URL e conscientização sobre phishing direcionado.     |
+| T1204 | User Execution                    | O usuário executou uma macro em arquivo do Office, permitindo a execução do código. | Restringir execução de macros não assinadas e utilizar sandbox para análise. |
+| T1105 | Ingress Tool Transfer             | O payload foi baixado do servidor do atacante após execução da macro.               | Bloquear downloads de scripts remotos e aplicar inspeção de tráfego.         |
+| T1059 | Command and Scripting Interpreter | O PowerShell foi utilizado para estabelecer a sessão remota e executar comandos.    | Monitorar comandos PowerShell anômalos e aplicar restrições de execução.     |
+| T1078 | Valid Accounts                    | As credenciais coletadas foram reutilizadas para comprometer o Microsoft 365.       | Ativar autenticação multifator e revisar logins simultâneos por conta.       |

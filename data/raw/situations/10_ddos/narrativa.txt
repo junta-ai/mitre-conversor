@@ -1,0 +1,34 @@
+Durante um exercício de Red Team, foi simulado um ataque de negação de serviço distribuído (DDoS) contra a aplicação crítica da organização-alvo, hospedada em https://app.empresaexemplo.com.
+
+A primeira etapa envolveu o reconhecimento da infraestrutura da vítima, com ênfase em identificar servidores expostos e serviços ativos. Foram utilizados os seguintes comandos para isso:
+
+whois empresaexemplo.com
+nslookup app.empresaexemplo.com
+nmap -p 80,443 app.empresaexemplo.com --script http-title,http-server-header
+
+Esses testes permitiram identificar que a aplicação estava em um balanceador de carga Nginx, com proteção básica e sem WAF visível. O servidor respondia com cabeçalhos genéricos e com indícios de proteção mínima.
+
+Com base nessa análise, foi iniciada a fase de desenvolvimento de infraestrutura maliciosa. O atacante comprometeu servidores vulneráveis (com falhas conhecidas em WordPress e servidores FTP abertos) para estabelecer uma botnet, instalando agentes controláveis remotamente. A ferramenta zmap foi utilizada para escanear IPs vulneráveis em larga escala com o comando:
+
+zmap -p 21 --bandwidth=10M -o ftp_hosts.txt
+
+Após comprometer mais de 60 servidores, foi estabelecida uma rede de bots utilizando scripts de comunicação em Python que se conectavam a um painel C2 central via WebSocket, utilizando ofuscação simples em base64 nas mensagens e porta não convencional (porta 8881).
+
+A descoberta de serviços e roteamento interno também foi realizada em algumas vítimas para aumentar o dano. Ferramentas como netstat, ipconfig, e route print foram utilizadas para identificar possíveis rotas e servidores DNS internos expostos.
+
+A campanha de ataque foi disparada em uma data previamente combinada, com diferentes tipos de ataques lançados simultaneamente:
+
+HTTP GET Flood com o script hulk.py
+
+UDP Flood contra IPs resolvidos pelo domínio
+
+SYN Flood com hping3 nos servidores mais vulneráveis
+
+Os comandos disparados remotamente incluíam:
+
+python3 hulk.py http://app.empresaexemplo.com
+
+hping3 -S app.empresaexemplo.com -p 443 --flood
+python3 udp_flood.py app.empresaexemplo.com 80
+
+O ataque durou 35 minutos e resultou em interrupção completa da aplicação, impedindo o login de clientes e acesso à API interna. Também foi observada lentidão nos serviços de autenticação em auth.empresaexemplo.com.

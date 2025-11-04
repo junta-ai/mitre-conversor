@@ -1,0 +1,5 @@
+| ID    | Nome                       | Descrição                                                                                      | Correção                                                                                         |
+| ----- | -------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| T1539 | Steal Web Session Cookie   | Cookies de sessão foram interceptados por uma extensão maliciosa e reutilizados pelo atacante. | Aplicar política de segurança para extensões, usar cookies com flag HttpOnly e autenticação MFA. |
+| T1557 | Man-in-the-Middle          | O atacante se posicionou entre o navegador e o servidor web via código na extensão.            | Monitorar comportamento de extensões e adotar inspeção de tráfego local.                         |
+| T1071 | Application Layer Protocol | A comunicação com o servidor remoto era realizada via HTTPS camuflada em tráfego legítimo.     | Inspecionar conexões HTTPS saindo de navegadores com heurísticas baseadas em comportamento.      |

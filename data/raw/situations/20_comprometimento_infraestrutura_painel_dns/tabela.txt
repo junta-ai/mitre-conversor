@@ -1,0 +1,7 @@
+| ID    | Nome                            | Descrição                                                                           | Correção                                                                      |
+| ----- | ------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| T1596 | Search Open Technical Databases | O atacante utilizou ferramentas para identificar versão do painel DNS exposto.      | Remover serviços administrativos da internet e manter sistemas atualizados.   |
+| T1584 | Compromise Infrastructure       | Um painel DNS legítimo foi comprometido e usado como vetor de redirecionamento.     | Isolar serviços de infraestrutura em redes segregadas com autenticação forte. |
+| T1556 | Modify Authentication Process   | A página de login foi replicada para capturar credenciais válidas.                  | Aplicar MFA e verificar a integridade de domínios via monitoramento de DNS.   |
+| T1565 | Transmitted Data Manipulation   | Registros DNS foram alterados para redirecionar tráfego legítimo ao servidor falso. | Implementar DNSSEC e monitorar alterações não autorizadas em registros DNS.   |
+| T1078 | Valid Accounts                  | As credenciais obtidas foram reutilizadas para acesso interno ao ambiente.          | Ativar alertas para logins suspeitos e rotacionar credenciais periodicamente. |

@@ -1,0 +1,3 @@
+Durante o teste, observou-se uma rotina que sobrescreveu áreas de disco em hosts selecionados após a confirmação de exfiltração, reduzindo severamente a capacidade de recuperação local. A ação foi orquestrada para coincidir com janelas de manutenção, aumentando o dano operacional.
+
+Forensics indicaram uso de scripts que invocavam ferramentas nativas de baixo nível para realizar sobrescrita, com posterior tentativa de limpeza de logs. A resposta priorizou recuperação a partir de backups imutáveis, análise de integridade dos sistemas de backup e revalidação de snapshots.

@@ -1,0 +1,12 @@
+| ID    | Nome                              | Descrição                                                          | Correção                                                      |
+| ----- | --------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------- |
+| T1590 | Gather Victim Network Information | Coleta de nomes de domínio a partir de certificado SSL             | Restringir exposição de domínios internos nos certificados    |
+| T1596 | Search Victim-Owned Websites      | Acesso ao painel interno exposto via subdomínio                    | Restringir acesso via autenticação e redes VPN                |
+| T1059 | Command and Scripting Interpreter | Execução remota de comandos via API                                | Validar entradas em endpoints e usar whitelisting de comandos |
+| T1203 | Exploitation for Client Execution | Execução de payloads remotos para acesso shell                     | Monitorar e bloquear comportamento anômalo em APIs            |
+| T1601 | Modify System Image               | Persistência via alteração do script de inicialização do container | Usar imagens imutáveis com verificação de integridade         |
+| T1615 | Group Policy Discovery            | Enumeração de configurações de política de grupo                   | Aplicar ACLs e monitorar acesso a GPOs                        |
+| T1552 | Unsecured Credentials             | Credenciais descobertas em arquivos de configuração                | Remover segredos de arquivos versionados                      |
+| T1526 | Cloud Service Discovery           | Descoberta de infraestrutura via APIs expostas                     | Desabilitar acesso público e usar autenticação forte          |
+| T1021 | Remote Services                   | Exploração via serviços remotos expostos                           | Utilizar firewall para bloquear acessos desnecessários        |
+| T1612 | Build Image on Host               | Persistência via modificação da imagem Docker                      | Monitorar processos de build e auditar containers             |

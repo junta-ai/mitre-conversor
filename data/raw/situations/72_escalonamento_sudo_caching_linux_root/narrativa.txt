@@ -1,0 +1,4 @@
+Em uma infraestrutura Linux corporativa, o invasor obteve acesso inicial a uma máquina de desenvolvedor por meio de credenciais expostas em repositório Git. Uma vez logado, explorou a funcionalidade de cache do comando sudo, que mantinha privilégios administrativos temporariamente armazenados.
+O atacante criou um script de shell persistente que aproveitava o cache ativo para executar comandos como root sem nova autenticação.
+
+Posteriormente, o agente instalou uma backdoor systemd service para garantir acesso contínuo, alterando variáveis de histórico (HISTCONTROL) e permissões de diretórios. O código malicioso era ofuscado e reiniciado a cada boot, mantendo o controle total do host.

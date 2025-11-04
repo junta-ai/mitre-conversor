@@ -1,0 +1,9 @@
+Durante o exercício de simulação, o atacante obteve acesso a um servidor Windows via protocolo RDP, utilizando credenciais comprometidas em fases anteriores do teste. Após estabelecer a sessão, foi implantado um script automatizado para captura periódica de tela do usuário ativo, com o objetivo de coletar informações sensíveis em tempo real.
+
+O script utilizava a biblioteca Powershell com suporte ao .NET para capturar screenshots invisíveis e salvá-los no diretório temporário. O seguinte comando foi executado:
+
+powershell -windowstyle hidden -command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -AssemblyName System.Drawing; $bmp = New-Object Drawing.Bitmap ([System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Width, [System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Height); $graphics = [Drawing.Graphics]::FromImage($bmp); $graphics.CopyFromScreen(0,0,0,0,$bmp.Size); $bmp.Save('C:\Temp\screenshot.jpg')"
+
+A cada execução, o script era chamado por uma tarefa agendada configurada com o schtasks, garantindo a coleta contínua sem interação manual.
+
+As imagens capturadas continham dashboards administrativos, informações bancárias e e-mails corporativos com dados sigilosos. O atacante automatizou a exfiltração via canal HTTPS para servidor externo controlado.
