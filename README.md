@@ -7,7 +7,7 @@
 Uma API inteligente para classificação automática de narrativas de segurança cibernética baseada no framework **MITRE ATT&CK**, desenvolvida pela **Junta.ai**. O sistema utiliza técnicas avançadas de NLP (Natural Language Processing) e RAG (Retrieval-Augmented Generation) para identificar automaticamente táticas e técnicas em descrições textuais de incidentes de segurança.
 
 ## Vídeo explicativo do projeto
-[![MITRE ATT&CK Classifier - Vídeo](https://img.youtube.com/vi/JVHTHjqpuW8/maxresdefault.jpg)](https://youtu.be/JVHTHjqpuW8)
+[![MITRE ATT&CK Classifier - Vídeo](https://img.youtube.com/vi/SVv-GfqNUVQ/maxresdefault.jpg)](https://youtu.be/SVv-GfqNUVQ)
 
 ## 🎯 Funcionalidades Principais
 
