@@ -1,10 +1,13 @@
-# MITRE ATT&CK Classifier API
+[# MITRE ATT&CK Classifier API
 
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 Uma API inteligente para classificação automática de narrativas de segurança cibernética baseada no framework **MITRE ATT&CK**, desenvolvida pela **Junta.ai**. O sistema utiliza técnicas avançadas de NLP (Natural Language Processing) e RAG (Retrieval-Augmented Generation) para identificar automaticamente táticas e técnicas em descrições textuais de incidentes de segurança.
+
+## Vídeo explicativo do projeto
+[![MITRE ATT&CK Classifier - Vídeo](https://img.youtube.com/vi/JVHTHjqpuW8/maxresdefault.jpg)](https://youtu.be/JVHTHjqpuW8)
 
 ## 🎯 Funcionalidades Principais
 
@@ -379,3 +382,4 @@ Este projeto está licenciado sob a MIT License. Veja o arquivo `LICENSE` para d
 ---
 
 **Desenvolvido com ❤️ pela equipe Junta.ai**
+](https://youtu.be/JVHTHjqpuW8)
