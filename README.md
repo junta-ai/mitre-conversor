@@ -382,4 +382,3 @@ Este projeto está licenciado sob a MIT License. Veja o arquivo `LICENSE` para d
 ---
 
 **Desenvolvido com ❤️ pela equipe Junta.ai**
-](https://youtu.be/JVHTHjqpuW8)
